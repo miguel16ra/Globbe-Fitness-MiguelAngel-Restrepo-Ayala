@@ -1,0 +1,12 @@
+ID: 4
+Título: Rage
+Año: 1977
+Editorial: Signet Books
+Páginas: 211
+-----------------------------
+ID: 5
+Título: The Stand
+Año: 1978
+Editorial: Doubleday
+Páginas: 823
+-----------------------------
