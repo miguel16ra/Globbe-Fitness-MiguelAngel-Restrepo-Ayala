@@ -29,4 +29,15 @@ Desarrollar una aplicación funcional en JavaFX conectada a base de datos median
 - Ejecutar el Main
 
 ## Estructura del repositorio
-Actualizar cuando acabemos
+-README.md
+- Bases de Datos
+- Entornos de Desarrollo
+- Lenguajes de marcas
+- Programación
+- Sistemas Informáticos
+- MPO
+- IPE
+
+
+
+
