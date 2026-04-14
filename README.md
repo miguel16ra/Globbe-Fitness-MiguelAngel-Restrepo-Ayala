@@ -29,7 +29,7 @@ Desarrollar una aplicación funcional en JavaFX conectada a base de datos median
 - Ejecutar el Main
 
 ## Estructura del repositorio
--README.md
+- README.md
 - Bases de Datos
 - Entornos de Desarrollo
 - Lenguajes de marcas
