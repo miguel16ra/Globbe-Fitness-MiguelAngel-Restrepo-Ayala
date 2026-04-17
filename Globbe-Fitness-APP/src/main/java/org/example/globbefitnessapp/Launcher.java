@@ -1,4 +1,4 @@
-package org.example.tiendaapp;
+package org.example.globbefitnessapp;
 
 import javafx.application.Application;
 

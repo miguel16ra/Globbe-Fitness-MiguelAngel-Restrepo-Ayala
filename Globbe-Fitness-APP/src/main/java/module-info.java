@@ -1,4 +1,4 @@
-module org.example.tiendaapp {
+module org.example.globbefitnessapp {
     requires javafx.controls;
     requires javafx.fxml;
     requires static lombok;
@@ -6,12 +6,12 @@ module org.example.tiendaapp {
     requires com.google.gson;
     requires org.json;
 
-    opens org.example.tiendaapp to javafx.fxml;
-    exports org.example.tiendaapp;
+    opens org.example.globbefitnessapp to javafx.fxml;
+    exports org.example.globbefitnessapp;
 
-    exports org.example.tiendaapp.controller;
-    opens org.example.tiendaapp.controller to javafx.fxml;
+    exports org.example.globbefitnessapp.controller;
+    opens org.example.globbefitnessapp.controller to javafx.fxml;
 
-    exports org.example.tiendaapp.model;
-    opens org.example.tiendaapp.model to javafx.fxml, com.google.gson, javafx.base;
+    exports org.example.globbefitnessapp.model;
+    opens org.example.globbefitnessapp.model to javafx.fxml, com.google.gson, javafx.base;
 }
