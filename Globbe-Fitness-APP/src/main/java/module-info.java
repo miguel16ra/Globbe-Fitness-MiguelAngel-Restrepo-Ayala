@@ -5,6 +5,7 @@ module org.example.globbefitnessapp {
     requires java.net.http;
     requires com.google.gson;
     requires org.json;
+    requires java.sql;
 
     opens org.example.globbefitnessapp to javafx.fxml;
     exports org.example.globbefitnessapp;
