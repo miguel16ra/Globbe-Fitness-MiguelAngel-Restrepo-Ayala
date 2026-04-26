@@ -63,6 +63,15 @@ public interface DBSchema {
     String VENTA_TOTAL = "total";
     String VENTA_ID_SOCIO = "id_socio";
 
+    // USUARIO
+    String TAB_USUARIO = "usuarios";
+    String USUARIO_ID = "id";
+    String USUARIO_NOMBRE = "nombre";
+    String USUARIO_APELLIDOS = "apellidos";
+    String USUARIO_CORREO = "correo";
+    String USUARIO_PASS = "password";
+    String USUARIO_ROL = "rol";
+
     // DETALLE_VENTA
     String TAB_DETALLE_VENTA = "detalle_venta";
     String DETALLE_VENTA_ID = "id_detalle";
