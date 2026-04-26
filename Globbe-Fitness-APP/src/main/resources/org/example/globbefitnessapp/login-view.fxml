@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.globbefitnessapp.controller.LoginController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,7 +51,7 @@
             <Insets left="50.0" right="50.0" top="25.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="editLogin" promptText="introduce tu contraseña" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <TextField fx:id="editPass" promptText="introduce tu contraseña" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="15.0" left="50.0" right="50.0" />
          </GridPane.margin>
