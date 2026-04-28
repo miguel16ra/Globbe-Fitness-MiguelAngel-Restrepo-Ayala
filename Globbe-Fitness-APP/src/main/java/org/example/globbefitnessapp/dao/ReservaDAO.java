@@ -58,7 +58,7 @@ public class ReservaDAO {
                 int idSocio = resultSet.getInt(DBSchema.RESERVA_ID_SOCIO);
                 int idClase = resultSet.getInt(DBSchema.RESERVA_ID_CLASE);
 
-                listaReservas.add(new Reserva(fechaReserva, estado, asistencia, idSocio, idClase));
+                listaReservas.add(new Reserva(id, fechaReserva, estado, asistencia, idSocio, idClase));
             }
         }catch (SQLException e){
             System.out.println("Error en la consulta");

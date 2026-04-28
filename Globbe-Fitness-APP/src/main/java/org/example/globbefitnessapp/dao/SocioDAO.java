@@ -66,7 +66,7 @@ public class SocioDAO {
                 String estado = resultSet.getString(DBSchema.SOCIO_ESTADO);
                 int idPlan = resultSet.getInt(DBSchema.SOCIO_ID_PLAN);
 
-                listaSocios.add(new Socio(nombre, apellidos, dni,  email, telefono, fechaAlta, estado, idPlan));
+                listaSocios.add(new Socio(id, nombre, apellidos, dni,  email, telefono, fechaAlta, estado, idPlan));
             }
         }catch (SQLException e){
             System.out.println("Error en la consulta");

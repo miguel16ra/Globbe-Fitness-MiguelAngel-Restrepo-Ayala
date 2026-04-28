@@ -30,7 +30,11 @@ public class ProductoDAO {
             preparedStatement.setInt(4, producto.getStock());
             preparedStatement.setString(5, producto.getActivo());
             preparedStatement.setInt(6, producto.getIdCategoria());
-            preparedStatement.setInt(7, producto.getIdOferta());
+            if (producto.getIdOferta() == null) {
+                preparedStatement.setNull(7, java.sql.Types.INTEGER);
+            } else {
+                preparedStatement.setInt(7, producto.getIdOferta());
+            }
 
             preparedStatement.executeUpdate();
 
@@ -63,9 +67,9 @@ public class ProductoDAO {
                 int stock = resultSet.getInt(DBSchema.PRODUCTO_STOCK);
                 String activo = resultSet.getString(DBSchema.PRODUCTO_ACTIVO);
                 int idCategoria = resultSet.getInt(DBSchema.PRODUCTO_ID_CATEGORIA);
-                int idOferta = resultSet.getInt(DBSchema.PRODUCTO_ID_OFERTA);
+                Integer idOferta = (Integer) resultSet.getObject(DBSchema.PRODUCTO_ID_OFERTA);
 
-                listaProductos.add(new Producto(nombre, descripcion, precio, stock, activo, idCategoria, idOferta));
+                listaProductos.add(new Producto(id, nombre, descripcion, precio, stock, activo, idCategoria, idOferta));
             }
         }catch(SQLException e){
             System.out.println("Error en la consulta");

@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
+import org.example.globbefitnessapp.dao.ProductoDAO;
 import org.example.globbefitnessapp.database.DBConnection;
 import org.example.globbefitnessapp.database.DBSchema;
 import org.example.globbefitnessapp.model.Producto;
@@ -99,6 +100,7 @@ public class ProductoController implements Initializable {
     private Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
+    private ProductoDAO productoDAO;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -119,7 +121,7 @@ public class ProductoController implements Initializable {
         cmbActivo.setItems(FXCollections.observableArrayList("Activo", "Inactivo"));
         cmbIdCategoria.setItems((FXCollections.observableArrayList(1,2,3)));
         cmbIdOferta.setItems((FXCollections.observableArrayList(1,2)));
-        cargarSocios();
+        cargarProductos();
 
         tablaProductos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             txtNombre.setText(newValue.getNombre());
@@ -174,25 +176,20 @@ public class ProductoController implements Initializable {
                 return;
             }
 
-            String query = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?)",
-                    DBSchema.TAB_PRODUCTO,
-                    DBSchema.PRODUCTO_NOMBRE, DBSchema.PRODUCTO_DESCRIPCION, DBSchema.PRODUCTO_PRECIO, DBSchema.PRODUCTO_STOCK,
-                    DBSchema.PRODUCTO_ACTIVO, DBSchema.PRODUCTO_ID_CATEGORIA, DBSchema.PRODUCTO_ID_OFERTA);
-
             try{
-                preparedStatement = connection.prepareStatement(query);
+                Producto producto = new Producto(
+                        txtNombre.getText(),
+                        txtDescripcion.getText(),
+                        Double.parseDouble(txtPrecio.getText()),
+                        Integer.parseInt(txtStock.getText()),
+                        cmbActivo.getValue(),
+                        cmbIdCategoria.getValue(),
+                        cmbIdOferta.getValue()
+                );
 
-                preparedStatement.setString(1, txtNombre.getText());
-                preparedStatement.setString(2, txtDescripcion.getText());
-                preparedStatement.setDouble(3, Double.parseDouble(txtPrecio.getText()));
-                preparedStatement.setInt(4, Integer.parseInt(txtStock.getText()));
-                preparedStatement.setString(5, cmbActivo.getValue());
-                preparedStatement.setInt(6, cmbIdCategoria.getValue());
-                preparedStatement.setInt(7, cmbIdOferta.getValue());
+                productoDAO.insertProducto(producto);
 
-                preparedStatement.executeUpdate();
-
-                cargarSocios();
+                cargarProductos();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Añadir Socio");
@@ -215,44 +212,25 @@ public class ProductoController implements Initializable {
                 || txtPrecio.getText().isEmpty()
                 || txtStock.getText().isEmpty()
                 || cmbActivo.getValue() == null
-                || cmbIdCategoria.getValue() == null
-                || cmbIdOferta.getValue() == null;
+                || cmbIdCategoria.getValue() == null;
     }
 
     private void instances() {
         listaProductos = FXCollections.observableArrayList();
         listaFiltrada = new FilteredList<>(listaProductos);
+        productoDAO = new ProductoDAO();
     }
 
-    private void cargarSocios() {
-        connection = DBConnection.getConnection();
+    private void cargarProductos() {
         listaProductos.clear();
 
-        String query = String.format("SELECT * FROM %s",
-                DBSchema.TAB_PRODUCTO);
 
         try {
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                Producto producto = new Producto(
-                        resultSet.getInt(DBSchema.PRODUCTO_ID),
-                        resultSet.getString(DBSchema.PRODUCTO_NOMBRE),
-                        resultSet.getString(DBSchema.PRODUCTO_DESCRIPCION),
-                        resultSet.getDouble(DBSchema.PRODUCTO_PRECIO),
-                        resultSet.getInt(DBSchema.PRODUCTO_STOCK),
-                        resultSet.getString(DBSchema.PRODUCTO_ACTIVO),
-                        resultSet.getInt(DBSchema.PRODUCTO_ID_CATEGORIA),
-                        resultSet.getInt(DBSchema.PRODUCTO_ID_OFERTA)
-                );
-                listaProductos.add(producto);
-            }
-
+            listaProductos.addAll(productoDAO.getAllProductos());
             tablaProductos.setItems(listaFiltrada);
 
-        }catch (SQLException e){
-            System.out.println("Error al cargar socios");
+        } catch (Exception e) {
+            System.out.println("Error al cargar productos");
             System.out.println(e.getMessage());
         }
     }

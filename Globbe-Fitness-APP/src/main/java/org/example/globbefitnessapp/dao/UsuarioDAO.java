@@ -90,7 +90,7 @@ public class UsuarioDAO {
                 String password = resultSet.getString(DBSchema.USUARIO_PASS);
                 String rol = resultSet.getString(DBSchema.USUARIO_ROL);
 
-                listaUsuarios.add(new Usuario(nombre,apellidos,correo,password,rol));
+                listaUsuarios.add(new Usuario(id, nombre,apellidos,correo,password,rol));
 
             }
         }catch (SQLException e){

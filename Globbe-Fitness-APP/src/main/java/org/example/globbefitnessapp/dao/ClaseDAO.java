@@ -54,7 +54,7 @@ public class ClaseDAO {
                 int aforoMaximo = resultSet.getInt(DBSchema.CLASE_AFORO);
                 String monitor = resultSet.getString(DBSchema.CLASE_MONITOR);
                 String estado = resultSet.getString(DBSchema.CLASE_ESTADO);
-                listaClases.add(new Clase(nombre, descripcion, fecha, hora, sala, aforoMaximo, monitor, estado));
+                listaClases.add(new Clase(id, nombre, descripcion, fecha, hora, sala, aforoMaximo, monitor, estado));
             }
         }catch (SQLException e){
             System.out.println("Error en la consulta");

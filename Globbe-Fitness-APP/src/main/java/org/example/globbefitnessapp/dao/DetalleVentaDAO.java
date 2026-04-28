@@ -52,7 +52,7 @@ public class DetalleVentaDAO {
                 int idVenta = resultSet.getInt(DBSchema.DETALLE_VENTA_ID_VENTA);
                 int idProducto = resultSet.getInt(DBSchema.DETALLE_VENTA_ID_PRODUCTO);
 
-                listaDetalleVenta.add(new DetalleVenta(cantidad,precioUnitario,total,idVenta,idProducto));
+                listaDetalleVenta.add(new DetalleVenta(id, cantidad,precioUnitario,total,idVenta,idProducto));
             }
         }catch (SQLException e){
             System.out.println("Error en la consulta");

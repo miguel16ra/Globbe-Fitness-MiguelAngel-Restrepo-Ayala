@@ -32,7 +32,7 @@ public class PlanDAO {
                 int duracion = resultSet.getInt(DBSchema.PLAN_DURACION);
                 Boolean activo = resultSet.getBoolean(DBSchema.PLAN_ACTIVO);
 
-                listaPlanes.add(new Plan(nombre,descripcion,precio,duracion,activo));
+                listaPlanes.add(new Plan(id,nombre,descripcion,precio,duracion,activo));
             }
 
         }catch (SQLException e){

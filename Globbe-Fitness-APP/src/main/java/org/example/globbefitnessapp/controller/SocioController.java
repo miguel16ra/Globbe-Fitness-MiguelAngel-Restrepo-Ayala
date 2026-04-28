@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
+import org.example.globbefitnessapp.dao.SocioDAO;
 import org.example.globbefitnessapp.database.DBConnection;
 import org.example.globbefitnessapp.database.DBSchema;
 import org.example.globbefitnessapp.model.Socio;
@@ -107,6 +108,7 @@ public class SocioController implements Initializable {
     private Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
+    private SocioDAO socioDAO;
 
 
     @Override
@@ -136,8 +138,6 @@ public class SocioController implements Initializable {
 
         btnAgregar.setOnAction(event -> {
 
-            connection = DBConnection.getConnection();
-
             if (camposVacios()){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Campos Vacios");
@@ -147,24 +147,19 @@ public class SocioController implements Initializable {
                 return;
             }
 
-            String query = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?,?)",
-                    DBSchema.TAB_SOCIO, DBSchema.SOCIO_NOMBRE, DBSchema.SOCIO_APELLIDOS,
-                    DBSchema.SOCIO_DNI, DBSchema.SOCIO_EMAIL, DBSchema.SOCIO_TELEFONO, DBSchema.SOCIO_FECHA_ALTA,
-                    DBSchema.SOCIO_ESTADO, DBSchema.SOCIO_ID_PLAN);
-
             try{
-                preparedStatement = connection.prepareStatement(query);
+                Socio socio = new Socio(
+                        txtNombre.getText(),
+                        txtApellidos.getText(),
+                        txtDni.getText(),
+                        txtEmail.getText(),
+                        txtTelefono.getText(),
+                        txtFechaAlta.getText(),
+                        cmbEstado.getValue(),
+                        cmbIdPlan.getValue()
+                );
 
-                preparedStatement.setString(1, txtNombre.getText());
-                preparedStatement.setString(2, txtApellidos.getText());
-                preparedStatement.setString(3, txtDni.getText());
-                preparedStatement.setString(4, txtEmail.getText());
-                preparedStatement.setString(5, txtTelefono.getText());
-                preparedStatement.setString(6, txtFechaAlta.getText());
-                preparedStatement.setString(7, cmbEstado.getValue());
-                preparedStatement.setInt(8, cmbIdPlan.getValue());
-
-                preparedStatement.executeUpdate();
+                socioDAO.insertSocio(socio);
 
                 cargarSocios();
 
@@ -229,6 +224,7 @@ public class SocioController implements Initializable {
     private void instances() {
         listaSocios = FXCollections.observableArrayList();
         listaFiltrada = new FilteredList<>(listaSocios);
+        socioDAO = new SocioDAO();
     }
 
     private boolean camposVacios() {
@@ -254,36 +250,15 @@ public class SocioController implements Initializable {
     }
 
     private void cargarSocios() {
-        connection = DBConnection.getConnection();
         listaSocios.clear();
-
-        String query = String.format("SELECT * FROM %s",
-                DBSchema.TAB_SOCIO);
-
         try {
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                Socio socio = new Socio(
-                        resultSet.getInt(DBSchema.SOCIO_ID),
-                        resultSet.getString(DBSchema.SOCIO_NOMBRE),
-                        resultSet.getString(DBSchema.SOCIO_APELLIDOS),
-                        resultSet.getString(DBSchema.SOCIO_DNI),
-                        resultSet.getString(DBSchema.SOCIO_EMAIL),
-                        resultSet.getString(DBSchema.SOCIO_TELEFONO),
-                        resultSet.getString(DBSchema.SOCIO_FECHA_ALTA),
-                        resultSet.getString(DBSchema.SOCIO_ESTADO),
-                        resultSet.getInt(DBSchema.SOCIO_ID_PLAN)
-                );
-                listaSocios.add(socio);
-            }
-
+            listaSocios.addAll(socioDAO.getAllSocios());
             tablaSocios.setItems(listaFiltrada);
 
-        }catch (SQLException e){
+        }catch (Exception e) {
             System.out.println("Error al cargar socios");
             System.out.println(e.getMessage());
         }
+
     }
 }

@@ -55,7 +55,7 @@ public class VentaDAO {
                 double total = resultSet.getDouble(DBSchema.VENTA_TOTAL);
                 int idSocio = resultSet.getInt(DBSchema.VENTA_ID_SOCIO);
 
-                listaVentas.add(new Venta(fecha,metodoPago,total,idSocio));
+                listaVentas.add(new Venta(id,fecha,metodoPago,total,idSocio));
             }
         }catch(SQLException e){
             System.out.println("Error en la consulta");
