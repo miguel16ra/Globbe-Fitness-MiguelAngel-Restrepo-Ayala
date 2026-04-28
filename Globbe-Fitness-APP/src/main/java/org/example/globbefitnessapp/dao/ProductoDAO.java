@@ -28,7 +28,7 @@ public class ProductoDAO {
             preparedStatement.setString(2, producto.getDescripcion());
             preparedStatement.setDouble(3, producto.getPrecio());
             preparedStatement.setInt(4, producto.getStock());
-            preparedStatement.setBoolean(5, producto.isActivo());
+            preparedStatement.setString(5, producto.getActivo());
             preparedStatement.setInt(6, producto.getIdCategoria());
             preparedStatement.setInt(7, producto.getIdOferta());
 
@@ -61,7 +61,7 @@ public class ProductoDAO {
                 String descripcion = resultSet.getString(DBSchema.PRODUCTO_DESCRIPCION);
                 double precio = resultSet.getDouble(DBSchema.PRODUCTO_PRECIO);
                 int stock = resultSet.getInt(DBSchema.PRODUCTO_STOCK);
-                boolean activo = resultSet.getBoolean(DBSchema.PRODUCTO_ACTIVO);
+                String activo = resultSet.getString(DBSchema.PRODUCTO_ACTIVO);
                 int idCategoria = resultSet.getInt(DBSchema.PRODUCTO_ID_CATEGORIA);
                 int idOferta = resultSet.getInt(DBSchema.PRODUCTO_ID_OFERTA);
 
@@ -92,7 +92,7 @@ public class ProductoDAO {
                 String descripcion = resultSet.getString(DBSchema.PRODUCTO_DESCRIPCION);
                 double precio = resultSet.getDouble(DBSchema.PRODUCTO_PRECIO);
                 int stock = resultSet.getInt(DBSchema.PRODUCTO_STOCK);
-                boolean activo = resultSet.getBoolean(DBSchema.PRODUCTO_ACTIVO);
+                String activo = resultSet.getString(DBSchema.PRODUCTO_ACTIVO);
                 int idCategoria = resultSet.getInt(DBSchema.PRODUCTO_ID_CATEGORIA);
                 int idOferta = resultSet.getInt(DBSchema.PRODUCTO_ID_OFERTA);
 

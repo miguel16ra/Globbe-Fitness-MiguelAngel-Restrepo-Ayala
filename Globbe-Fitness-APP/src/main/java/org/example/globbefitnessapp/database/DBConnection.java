@@ -1,5 +1,7 @@
 package org.example.globbefitnessapp.database;
 
+import javafx.scene.control.Alert;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -29,6 +31,10 @@ public class DBConnection {
         }catch (SQLException e){
             System.out.println("Error en la conexion con la base de datos");
             System.out.println(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Error al conectar con la base de datos");
+            alert.showAndWait();
         }
     }
 }

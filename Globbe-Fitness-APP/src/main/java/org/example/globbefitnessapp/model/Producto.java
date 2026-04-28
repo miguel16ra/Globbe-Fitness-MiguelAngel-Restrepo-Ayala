@@ -14,11 +14,11 @@ public class Producto {
     private String descripcion;
     private double precio;
     private int stock;
-    private boolean activo;
+    private String activo;
     private int idCategoria;
     private Integer idOferta;
 
-    public Producto(String nombre, String descripcion, double precio, int stock, boolean activo, int idCategoria, Integer idOferta) {
+    public Producto(String nombre, String descripcion, double precio, int stock, String activo, int idCategoria, Integer idOferta) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;

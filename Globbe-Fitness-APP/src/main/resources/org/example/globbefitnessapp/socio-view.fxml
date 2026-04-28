@@ -53,29 +53,30 @@
                         <GridPane hgap="10" vgap="12">
                             <children>
 
-                                <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                <TextField fx:id="txtNombre" prefWidth="220" promptText="Introduce el nombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" GridPane.rowIndex="2" />
+                                <TextField fx:id="txtNombre" prefWidth="220" promptText="Introduce el nombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                                <Label text="Apellidos:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                <TextField fx:id="txtApellidos" prefWidth="220" promptText="Introduce los apellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Apellidos:" GridPane.rowIndex="3" />
+                                <TextField fx:id="txtApellidos" prefWidth="220" promptText="Introduce los apellidos" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                                <Label text="DNI:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                <TextField fx:id="txtDni" prefWidth="220" promptText="Introduce el DNI" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="DNI:" GridPane.rowIndex="4" />
+                                <TextField fx:id="txtDni" prefWidth="220" promptText="Introduce el DNI" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                <TextField fx:id="txtEmail" prefWidth="220" promptText="Introduce el email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Email:" GridPane.rowIndex="5" />
+                                <TextField fx:id="txtEmail" prefWidth="220" promptText="Introduce el email" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                                <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                                <TextField fx:id="txtTelefono" prefWidth="220" promptText="Introduce el teléfono" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label text="Teléfono:" GridPane.rowIndex="6" />
+                                <TextField fx:id="txtTelefono" prefWidth="220" promptText="Introduce el teléfono" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-                                <Label text="Fecha Alta:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                                <TextField fx:id="txtFechaAlta" prefWidth="220" promptText="YYYY-MM-DD" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <Label text="Fecha Alta:" GridPane.rowIndex="7" />
+                                <TextField fx:id="txtFechaAlta" prefWidth="220" promptText="YYYY-MM-DD" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-                                <Label text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                                <ComboBox fx:id="cmbEstado" prefWidth="220" promptText="Selecciona estado" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <Label text="Estado:" GridPane.rowIndex="8" />
+                                <ComboBox fx:id="cmbEstado" prefWidth="220" promptText="Selecciona estado" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
-                                <Label text="ID Plan:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-                                <ComboBox fx:id="cmbIdPlan" prefWidth="220" promptText="Selecciona plan" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <Label text="ID Plan:" GridPane.rowIndex="9" />
+                                <ComboBox fx:id="cmbIdPlan" prefWidth="220" promptText="Selecciona plan" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Formulario de Socios" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                             </children>
 
                             <columnConstraints>
@@ -85,6 +86,7 @@
 
                             <rowConstraints>
                                 <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
@@ -99,7 +101,7 @@
                                 <Insets left="20.0" top="20.0" />
                             </padding>
                      <VBox.margin>
-                        <Insets left="20.0" top="30.0" />
+                        <Insets left="20.0" top="25.0" />
                      </VBox.margin>
                         </GridPane>
                     </children>
@@ -109,6 +111,12 @@
                     <children>
                         <HBox spacing="10">
                             <children>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Listado de Socios" />
+                        <Text strokeWidth="0.0" text="Buscar:">
+                           <HBox.margin>
+                              <Insets left="120.0" top="5.0" />
+                           </HBox.margin>
+                        </Text>
                                 <TextField fx:id="txtBuscar" prefHeight="25.0" prefWidth="290.0" promptText="Introduce el nombre, dni o correo">
                            <HBox.margin>
                               <Insets bottom="5.0" />
