@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1180.0"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.globbefitnessapp.controller.ReservaAdminController">
+
+    <children>
+        <Label layoutX="35.0" layoutY="20.0" text="Globbe Fitness Center"
+               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1f2937;" />
+
+        <Label layoutX="35.0" layoutY="58.0"
+               text="Gestión de Reservas"
+               style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" />
+
+        <VBox layoutX="35.0" layoutY="105.0" prefWidth="320.0" spacing="12.0"
+              style="-fx-background-color: white; -fx-border-color: #d1d5db; -fx-border-radius: 8; -fx-background-radius: 8;">
+            <padding>
+                <Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/>
+            </padding>
+
+            <Label text="Formulario de reservas"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+
+            <Label text="Introduce o edita los datos de una reserva."
+                   style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" />
+
+            <Separator />
+
+            <Label text="Fecha de reserva"/>
+            <DatePicker fx:id="dpFechaReserva" prefWidth="260.0"/>
+
+            <Label text="Estado"/>
+            <ComboBox fx:id="cmbEstado" prefWidth="260.0"/>
+
+            <Label text="Asistencia"/>
+            <ComboBox fx:id="cmbAsistencia" prefWidth="260.0"/>
+
+            <Label text="ID del socio"/>
+            <TextField fx:id="txtIdSocio" promptText="Introduce el ID del socio"/>
+
+            <Label text="ID de la clase"/>
+            <TextField fx:id="txtIdClase" promptText="Introduce el ID de la clase"/>
+
+            <Separator />
+
+            <HBox spacing="10.0">
+                <Button fx:id="btnAgregar" mnemonicParsing="false" prefWidth="90.0" text="Agregar"/>
+                <Button fx:id="btnActualizar" mnemonicParsing="false" prefWidth="90.0" text="Actualizar"/>
+                <Button fx:id="btnEliminar" mnemonicParsing="false" prefWidth="90.0" text="Eliminar"/>
+            </HBox>
+
+            <HBox spacing="10.0">
+                <Button fx:id="btnLimpiar" mnemonicParsing="false" prefWidth="130.0" text="Limpiar"/>
+                <Button fx:id="btnVolver" mnemonicParsing="false" prefWidth="130.0" text="Volver"/>
+            </HBox>
+        </VBox>
+
+        <VBox layoutX="385.0" layoutY="105.0" prefWidth="760.0" spacing="12.0"
+              style="-fx-background-color: white; -fx-border-color: #d1d5db; -fx-border-radius: 8; -fx-background-radius: 8;">
+            <padding>
+                <Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/>
+            </padding>
+
+            <Label text="Tabla de reservas"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+
+            <Label text="Consulta, filtra y selecciona reservas registradas en el sistema."
+                   style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" />
+
+            <Separator />
+
+            <TextField fx:id="txtBuscar" promptText="Buscar por estado, asistencia o fecha..." prefWidth="320.0"/>
+
+            <TableView fx:id="tablaReservas" prefHeight="520.0" prefWidth="720.0">
+                <columns>
+                    <TableColumn fx:id="colIdReserva" prefWidth="90.0" text="ID"/>
+                    <TableColumn fx:id="colFechaReserva" prefWidth="140.0" text="Fecha"/>
+                    <TableColumn fx:id="colEstado" prefWidth="120.0" text="Estado"/>
+                    <TableColumn fx:id="colAsistencia" prefWidth="120.0" text="Asistencia"/>
+                    <TableColumn fx:id="colIdSocio" prefWidth="110.0" text="ID Socio"/>
+                    <TableColumn fx:id="colIdClase" prefWidth="110.0" text="ID Clase"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
+</AnchorPane>

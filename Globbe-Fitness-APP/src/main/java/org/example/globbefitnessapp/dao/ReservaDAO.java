@@ -26,7 +26,7 @@ public class ReservaDAO {
 
             preparedStatement.setString(1, reserva.getFechaReserva());
             preparedStatement.setString(2, reserva.getEstado());
-            preparedStatement.setBoolean(3, reserva.isAsistencia());
+            preparedStatement.setString(3, reserva.getAsistencia());
             preparedStatement.setInt(4, reserva.getIdSocio());
             preparedStatement.setInt(5, reserva.getIdClase());
 
@@ -54,7 +54,7 @@ public class ReservaDAO {
                 int id = resultSet.getInt(DBSchema.RESERVA_ID);
                 String fechaReserva = resultSet.getString(DBSchema.RESERVA_FECHA);
                 String estado = resultSet.getString(DBSchema.RESERVA_ESTADO);
-                boolean asistencia = resultSet.getBoolean(DBSchema.RESERVA_ASISTENCIA);
+                String asistencia = resultSet.getString(DBSchema.RESERVA_ASISTENCIA);
                 int idSocio = resultSet.getInt(DBSchema.RESERVA_ID_SOCIO);
                 int idClase = resultSet.getInt(DBSchema.RESERVA_ID_CLASE);
 

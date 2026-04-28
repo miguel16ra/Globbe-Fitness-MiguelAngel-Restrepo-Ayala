@@ -54,10 +54,14 @@
       <font>
          <Font size="13.0" />
       </font></Button>
-    <Button fx:id="btnReservas" prefWidth="250.0" text="Gestionar reservas">
+    <Button fx:id="btnClases" prefWidth="250.0" text="Gestionar clases">
       <font>
          <Font size="13.0" />
       </font></Button>
+    <Button fx:id="btnReservas" prefWidth="250.0" text="Gestionar reservas">
+        <font>
+            <Font size="13.0" />
+        </font></Button>
     <Button fx:id="btnLogOut" prefWidth="250.0" text="Cerrar sesión">
       <font>
          <Font size="13.0" />

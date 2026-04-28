@@ -97,9 +97,6 @@ public class ProductoController implements Initializable {
 
     private ObservableList<Producto> listaProductos;
     private FilteredList<Producto> listaFiltrada;
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
     private ProductoDAO productoDAO;
 
     @Override
@@ -165,7 +162,6 @@ public class ProductoController implements Initializable {
         });
 
         btnAgregar.setOnAction(event -> {
-            connection = DBConnection.getConnection();
 
             if (camposVacios()){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -223,7 +219,6 @@ public class ProductoController implements Initializable {
 
     private void cargarProductos() {
         listaProductos.clear();
-
 
         try {
             listaProductos.addAll(productoDAO.getAllProductos());

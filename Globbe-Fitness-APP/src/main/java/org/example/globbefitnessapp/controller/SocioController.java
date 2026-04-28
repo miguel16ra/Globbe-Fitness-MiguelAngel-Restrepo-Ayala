@@ -105,9 +105,6 @@ public class SocioController implements Initializable {
 
     private ObservableList<Socio> listaSocios;
     private FilteredList<Socio> listaFiltrada;
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
     private SocioDAO socioDAO;
 
 

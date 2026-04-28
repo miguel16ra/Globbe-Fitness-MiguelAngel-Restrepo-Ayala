@@ -26,6 +26,11 @@ public class AdminMenuController implements Initializable {
     @FXML
     private Button btnSocios;
 
+    @FXML
+    private Button btnClases;
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,6 +82,21 @@ public class AdminMenuController implements Initializable {
                 stage.show();
 
                 ((Stage) btnSocios.getScene().getWindow()).close();
+            }catch (IOException e){
+                System.out.println("Ha ocurrido un error");
+                System.out.println(e.getMessage());
+            }
+        });
+
+        btnReservas.setOnAction(event -> {
+            Stage stage = new Stage();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("reservaAdmin-view.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.setTitle("Globbe Fitness Center - Gestión de Reservas");
+                stage.show();
             }catch (IOException e){
                 System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
