@@ -16,10 +16,10 @@ public class Socio {
     private String email;
     private String telefono;
     private String fechaAlta;
-    private boolean estado;
+    private String estado;
     private int idPlan;
 
-    public Socio(String nombre, String apellidos, String dni, String email, String telefono, String fechaAlta, boolean estado, int idPlan) {
+    public Socio(String nombre, String apellidos, String dni, String email, String telefono, String fechaAlta, String estado, int idPlan) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;

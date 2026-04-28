@@ -30,7 +30,7 @@ public class SocioDAO {
             preparedStatement.setString(4, socio.getEmail());
             preparedStatement.setString(5, socio.getTelefono());
             preparedStatement.setString(6, socio.getFechaAlta());
-            preparedStatement.setBoolean(7, socio.isEstado());
+            preparedStatement.setString(7, socio.getEstado());
             preparedStatement.setInt(8, socio.getIdPlan());
 
             preparedStatement.executeUpdate();
@@ -63,7 +63,7 @@ public class SocioDAO {
                 String email = resultSet.getString(DBSchema.SOCIO_EMAIL);
                 String telefono = resultSet.getString(DBSchema.SOCIO_TELEFONO);
                 String fechaAlta = resultSet.getString(DBSchema.SOCIO_FECHA_ALTA);
-                boolean estado = resultSet.getBoolean(DBSchema.SOCIO_ESTADO);
+                String estado = resultSet.getString(DBSchema.SOCIO_ESTADO);
                 int idPlan = resultSet.getInt(DBSchema.SOCIO_ID_PLAN);
 
                 listaSocios.add(new Socio(nombre, apellidos, dni,  email, telefono, fechaAlta, estado, idPlan));
@@ -95,7 +95,7 @@ public class SocioDAO {
                 String email = resultSet.getString(DBSchema.SOCIO_EMAIL);
                 String telefono = resultSet.getString(DBSchema.SOCIO_TELEFONO);
                 String fechaAlta = resultSet.getString(DBSchema.SOCIO_FECHA_ALTA);
-                boolean estado = resultSet.getBoolean(DBSchema.SOCIO_ESTADO);
+                String estado = resultSet.getString(DBSchema.SOCIO_ESTADO);
                 int idPlan = resultSet.getInt(DBSchema.SOCIO_ID_PLAN);
 
                 return new Socio(nombre, apellidos, dni, email, telefono, fechaAlta, estado, idPlan);

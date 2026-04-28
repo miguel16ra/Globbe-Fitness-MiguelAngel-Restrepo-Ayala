@@ -44,24 +44,30 @@ public class LoginController implements Initializable {
                     switch (usuarioLogin.getRol().toLowerCase()) {
                         case "admin" ->{
                             loader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
+                            Scene scene = new Scene(loader.load());
+                            stage.setScene(scene);
+                            stage.setTitle("Globbe Fitness Center - Panel de Administrador");
+                            stage.show();
+
+                            ((Stage) btnLogin.getScene().getWindow()).close();
                         }
                         case "user" ->{
                             loader = new FXMLLoader(HelloApplication.class.getResource("user-view.fxml"));
+                            Scene scene = new Scene(loader.load());
+                            stage.setScene(scene);
+                            stage.setTitle("Globbe Fitness Center - Panel de Socio");
+                            stage.show();
+
+                            ((Stage) btnLogin.getScene().getWindow()).close();
                         }
                         default ->{
                             Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Error");
                             alert.setContentText("Rol de usuario no valido");
                             alert.show();
-                            return;
                         }
                     }
-                    Scene scene = new Scene(loader.load());
-                    stage.setScene(scene);
-                    stage.setTitle("Globbe Fitness Login");
-                    stage.show();
 
-                    ((Stage) btnLogin.getScene().getWindow()).close();
 
                 }catch (IOException e){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
