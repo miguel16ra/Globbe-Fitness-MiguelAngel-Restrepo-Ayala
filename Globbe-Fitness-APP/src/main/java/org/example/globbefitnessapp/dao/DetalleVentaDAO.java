@@ -31,17 +31,15 @@ public class DetalleVentaDAO {
         preparedStatement.executeUpdate();
     }
 
-    public List<DetalleVenta> getDetallesByIDVenta(int idVentaBuscar){
+    public List<DetalleVenta> getAllDetalles(){
         List<DetalleVenta> listaDetalleVenta = new ArrayList<>();
         connection = DBConnection.getConnection();
 
-        String query =  String.format("SELECT * FROM %s WHERE %s = ?",
-                DBSchema.TAB_DETALLE_VENTA,
-                DBSchema.DETALLE_VENTA_ID_VENTA);
+        String query =  String.format("SELECT * FROM %s",
+                DBSchema.TAB_DETALLE_VENTA);
 
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idVentaBuscar);
             resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){

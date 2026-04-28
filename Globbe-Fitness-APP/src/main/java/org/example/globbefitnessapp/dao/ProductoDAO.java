@@ -77,35 +77,4 @@ public class ProductoDAO {
         }
         return listaProductos;
     }
-
-    public Producto getProductoById(int idBuscar){
-        connection = DBConnection.getConnection();
-
-        String query = String.format("SELECT * FROM %s WHERE %s = ?",
-                DBSchema.TAB_PRODUCTO,
-                DBSchema.PRODUCTO_ID);
-
-        try{
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idBuscar);
-            resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()){
-                int id = resultSet.getInt(DBSchema.PRODUCTO_ID);
-                String nombre = resultSet.getString(DBSchema.PRODUCTO_NOMBRE);
-                String descripcion = resultSet.getString(DBSchema.PRODUCTO_DESCRIPCION);
-                double precio = resultSet.getDouble(DBSchema.PRODUCTO_PRECIO);
-                int stock = resultSet.getInt(DBSchema.PRODUCTO_STOCK);
-                String activo = resultSet.getString(DBSchema.PRODUCTO_ACTIVO);
-                int idCategoria = resultSet.getInt(DBSchema.PRODUCTO_ID_CATEGORIA);
-                int idOferta = resultSet.getInt(DBSchema.PRODUCTO_ID_OFERTA);
-
-                return new Producto(nombre, descripcion, precio, stock, activo, idCategoria, idOferta);
-            }
-        }catch(SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
 }

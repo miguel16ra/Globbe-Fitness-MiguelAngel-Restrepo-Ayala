@@ -74,36 +74,4 @@ public class SocioDAO {
         }
         return listaSocios;
     }
-
-    public Socio getSocioById(int idBuscar){
-        connection = DBConnection.getConnection();
-
-        String query = String.format("SELECT * FROM %s WHERE %s = ?",
-                DBSchema.TAB_SOCIO,
-                DBSchema.SOCIO_ID);
-
-        try{
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idBuscar);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                int id = resultSet.getInt(DBSchema.SOCIO_ID);
-                String nombre = resultSet.getString(DBSchema.SOCIO_NOMBRE);
-                String apellidos = resultSet.getString(DBSchema.SOCIO_APELLIDOS);
-                String dni = resultSet.getString(DBSchema.SOCIO_DNI);
-                String email = resultSet.getString(DBSchema.SOCIO_EMAIL);
-                String telefono = resultSet.getString(DBSchema.SOCIO_TELEFONO);
-                String fechaAlta = resultSet.getString(DBSchema.SOCIO_FECHA_ALTA);
-                String estado = resultSet.getString(DBSchema.SOCIO_ESTADO);
-                int idPlan = resultSet.getInt(DBSchema.SOCIO_ID_PLAN);
-
-                return new Socio(nombre, apellidos, dni, email, telefono, fechaAlta, estado, idPlan);
-            }
-        }catch (SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
 }

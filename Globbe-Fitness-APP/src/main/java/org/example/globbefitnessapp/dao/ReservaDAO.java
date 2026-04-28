@@ -66,34 +66,4 @@ public class ReservaDAO {
         }
         return listaReservas;
     }
-
-    public List<Reserva> getReservasBySocio(int idBuscar){
-        List<Reserva> listaReservas = new ArrayList<>();
-        connection = DBConnection.getConnection();
-
-        String query = String.format("SELECT * FROM %s WHERE %s = ?",
-                DBSchema.TAB_RESERVA,
-                DBSchema.RESERVA_ID_SOCIO);
-
-        try{
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idBuscar);
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                int id = resultSet.getInt(DBSchema.RESERVA_ID);
-                String fechaReserva = resultSet.getString(DBSchema.RESERVA_FECHA);
-                String estado = resultSet.getString(DBSchema.RESERVA_ESTADO);
-                boolean asistencia = resultSet.getBoolean(DBSchema.RESERVA_ASISTENCIA);
-                int idSocio = resultSet.getInt(DBSchema.RESERVA_ID_SOCIO);
-                int idClase = resultSet.getInt(DBSchema.RESERVA_ID_CLASE);
-
-                listaReservas.add(new Reserva(fechaReserva, estado, asistencia, idSocio, idClase));
-            }
-        }catch (SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
-        }
-        return listaReservas;
-    }
 }
