@@ -38,7 +38,7 @@ public class UsuarioDAO {
                 String rol = resultSet.getString(DBSchema.USUARIO_ROL);
 
 
-                return new Usuario(nombre,apellidos,correo,password,rol);
+                return new Usuario(id,nombre,apellidos,correo,password,rol);
             }
         } catch (SQLException e) {
             System.out.println("Error en la consulta");

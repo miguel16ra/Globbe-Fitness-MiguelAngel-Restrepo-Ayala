@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="org.example.globbefitnessapp.controller.admin.UsuariosController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="15" left="15" right="15" top="15" />
+            </padding>
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Globbe Fitness Center" />
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gestión de Usuarios">
+            <VBox.margin>
+               <Insets top="-10.0" />
+            </VBox.margin></Label>
+
+            <HBox spacing="10">
+                <TextField fx:id="txtBuscar" prefWidth="250.0" promptText="Buscar por nombre, apellido o correo" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tablaUsuarios" prefHeight="331.0" prefWidth="732.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+                <TableColumn fx:id="colNombre" prefWidth="120" text="Nombre" />
+                <TableColumn fx:id="colApellidos" prefWidth="150" text="Apellidos" />
+                <TableColumn fx:id="colCorreo" prefWidth="180" text="Correo" />
+                <TableColumn fx:id="colPassword" prefWidth="120" text="Password" />
+                <TableColumn fx:id="colRol" prefWidth="100" text="Rol" />
+            </columns>
+        </TableView>
+    </center>
+
+    <right>
+        <VBox prefWidth="280" spacing="10">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" />
+            </padding>
+
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Editar usuario">
+            <VBox.margin>
+               <Insets bottom="5.0" />
+            </VBox.margin></Label>
+
+           <TextField fx:id="txtNombre" promptText="Nombre" />
+            <TextField fx:id="txtApellidos" promptText="Apellidos" />
+            <TextField fx:id="txtCorreo" promptText="Correo" />
+            <TextField fx:id="txtPassword" promptText="Password" />
+            <ComboBox fx:id="comboRol" prefWidth="250" promptText="Seleccionar rol" />
+
+            <Button fx:id="btnActualizar" maxWidth="Infinity" text="Actualizar" />
+            <Button fx:id="btnEliminar" maxWidth="Infinity" text="Eliminar" />
+         <Button fx:id="btnLimpiar" layoutX="25.0" layoutY="260.0" maxWidth="Infinity" text="Limpiar" />
+            <Button fx:id="btnVolver" maxWidth="Infinity" text="Volver" />
+        </VBox>
+    </right>
+
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+</BorderPane>

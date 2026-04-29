@@ -29,6 +29,8 @@ public class AdminMenuController implements Initializable {
     @FXML
     private Button btnClases;
 
+    @FXML
+    private Button btnUsuarios;
 
 
 
@@ -121,6 +123,23 @@ public class AdminMenuController implements Initializable {
                 System.out.println(e.getMessage());
             }
 
+        });
+
+        btnUsuarios.setOnAction(event -> {
+            Stage stage = new Stage();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/usuarioAdmin-view.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.setTitle("Globbe Fitness Center - Gestión de Usuarios");
+                stage.show();
+
+                ((Stage) btnUsuarios.getScene().getWindow()).close();
+            }catch (IOException e){
+                System.out.println("Ha ocurrido un error");
+                System.out.println(e.getMessage());
+            }
         });
     }
 }

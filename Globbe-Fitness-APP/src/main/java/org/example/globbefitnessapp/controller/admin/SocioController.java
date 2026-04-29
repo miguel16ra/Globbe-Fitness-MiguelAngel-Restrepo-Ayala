@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.scene.control.PasswordField;
 import org.example.globbefitnessapp.HelloApplication;
 import org.example.globbefitnessapp.dao.SocioDAO;
 import org.example.globbefitnessapp.model.Socio;
@@ -40,6 +41,7 @@ public class SocioController implements Initializable {
 
     @FXML
     private Button btnVolver;
+
 
     @FXML
     private TableColumn<Socio, String> colApellidos;
@@ -79,6 +81,9 @@ public class SocioController implements Initializable {
 
     @FXML
     private TextField txtDni;
+
+    @FXML
+    private PasswordField txtPassword;
 
     @FXML
     private TextField txtEmail;
@@ -148,10 +153,11 @@ public class SocioController implements Initializable {
                         txtTelefono.getText(),
                         txtFechaAlta.getText(),
                         cmbEstado.getValue(),
-                        cmbIdPlan.getValue()
+                        cmbIdPlan.getValue(),
+                        txtPassword.getText()
                 );
 
-                socioDAO.insertSocio(socio);
+                socioDAO.insertSocioUsuario(socio);
 
                 cargarSocios();
 
@@ -223,6 +229,7 @@ public class SocioController implements Initializable {
                 || txtApellidos.getText().isEmpty()
                 || txtTelefono.getText().isEmpty()
                 || txtEmail.getText().isEmpty()
+                || txtPassword.getText().isEmpty()
                 || cmbEstado.getValue() == null
                 || cmbIdPlan.getValue() == null;
     }
@@ -234,6 +241,7 @@ public class SocioController implements Initializable {
         txtEmail.clear();
         txtTelefono.clear();
         txtFechaAlta.clear();
+        txtPassword.clear();
         txtBuscar.clear();
         cmbEstado.setValue(null);
         cmbIdPlan.setValue(null);

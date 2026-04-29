@@ -18,8 +18,33 @@ public class Socio {
     private String fechaAlta;
     private String estado;
     private int idPlan;
+    private int idUsuario;
+    private String password;
 
+    public Socio(String nombre, String apellidos, String dni, String email, String telefono, String fechaAlta, String estado, int idPlan, String password) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.email = email;
+        this.telefono = telefono;
+        this.fechaAlta = fechaAlta;
+        this.estado = estado;
+        this.idPlan = idPlan;
+        this.password = password;
+    }
     public Socio(String nombre, String apellidos, String dni, String email, String telefono, String fechaAlta, String estado, int idPlan) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.email = email;
+        this.telefono = telefono;
+        this.fechaAlta = fechaAlta;
+        this.estado = estado;
+        this.idPlan = idPlan;
+    }
+
+    public Socio(int id, String nombre, String apellidos, String dni, String email, String telefono, String fechaAlta, String estado, int idPlan) {
+        this.idSocio = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;

@@ -22,6 +22,7 @@ public interface DBSchema {
     String SOCIO_FECHA_ALTA = "fecha_alta";
     String SOCIO_ESTADO = "estado";
     String SOCIO_ID_PLAN = "id_plan";
+    String SOCIO_ID_USUARIO = "id_usuario";
 
     // CLASE
     String TAB_CLASE = "clase";
@@ -65,7 +66,7 @@ public interface DBSchema {
 
     // USUARIO
     String TAB_USUARIO = "usuarios";
-    String USUARIO_ID = "id";
+    String USUARIO_ID = "id_usuario";
     String USUARIO_NOMBRE = "nombre";
     String USUARIO_APELLIDOS = "apellidos";
     String USUARIO_CORREO = "correo";
