@@ -1,4 +1,4 @@
-package org.example.globbefitnessapp.controller;
+package org.example.globbefitnessapp.controller.admin;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,16 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
 import org.example.globbefitnessapp.dao.ProductoDAO;
-import org.example.globbefitnessapp.database.DBConnection;
-import org.example.globbefitnessapp.database.DBSchema;
 import org.example.globbefitnessapp.model.Producto;
-import org.example.globbefitnessapp.model.Socio;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -121,14 +115,15 @@ public class ProductoController implements Initializable {
         cargarProductos();
 
         tablaProductos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            txtNombre.setText(newValue.getNombre());
-            txtDescripcion.setText(newValue.getDescripcion());
-            txtStock.setText(String.valueOf(newValue.getStock()));
-            txtPrecio.setText(String.valueOf(newValue.getPrecio()));
-            cmbActivo.setValue(newValue.getActivo());
-            cmbIdCategoria.setValue(newValue.getIdCategoria());
-            cmbIdOferta.setValue(newValue.getIdOferta());
-
+            if (newValue != null) {
+                txtNombre.setText(newValue.getNombre());
+                txtDescripcion.setText(newValue.getDescripcion());
+                txtStock.setText(String.valueOf(newValue.getStock()));
+                txtPrecio.setText(String.valueOf(newValue.getPrecio()));
+                cmbActivo.setValue(newValue.getActivo());
+                cmbIdCategoria.setValue(newValue.getIdCategoria());
+                cmbIdOferta.setValue(newValue.getIdOferta());
+            }
         });
     }
 
@@ -137,7 +132,7 @@ public class ProductoController implements Initializable {
             Stage stage = new Stage();
 
             try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/admin-view.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Panel de Administrador");
@@ -188,9 +183,9 @@ public class ProductoController implements Initializable {
                 cargarProductos();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Añadir Socio");
+                alert.setTitle("Añadir Producto");
                 alert.setHeaderText(null);
-                alert.setContentText("Socio agregado exitosamente");
+                alert.setContentText("Producto agregado exitosamente");
                 alert.showAndWait();
 
                 limpiarCampos();

@@ -1,4 +1,4 @@
-package org.example.globbefitnessapp.controller;
+package org.example.globbefitnessapp.controller.admin;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,17 +13,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
-import org.example.globbefitnessapp.dao.ProductoDAO;
 import org.example.globbefitnessapp.dao.ReservaDAO;
-import org.example.globbefitnessapp.model.Producto;
 import org.example.globbefitnessapp.model.Reserva;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ReservaAdminController implements Initializable {
@@ -103,6 +99,16 @@ public class ReservaAdminController implements Initializable {
         cmbEstado.setItems(FXCollections.observableArrayList("Pendiente", "Confirmada", "Cancelada"));
         cmbAsistencia.setItems(FXCollections.observableArrayList("Presente", "Ausente"));
         cargarReservas();
+
+        tablaReservas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            if (newValue != null) {
+                dpFechaReserva.setValue(LocalDate.parse(newValue.getFechaReserva()));
+                cmbEstado.setValue(newValue.getEstado());
+                cmbAsistencia.setValue(newValue.getAsistencia());
+                txtIdSocio.setText(String.valueOf(newValue.getIdSocio()));
+                txtIdClase.setText(String.valueOf(newValue.getIdClase()));
+            }
+        });
     }
 
     private void actions() {
@@ -110,7 +116,7 @@ public class ReservaAdminController implements Initializable {
             Stage stage = new Stage();
 
             try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/admin-view.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Panel de Administrador");
@@ -161,9 +167,9 @@ public class ReservaAdminController implements Initializable {
                 cargarReservas();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Añadir Socio");
+                alert.setTitle("Añadir Reserva");
                 alert.setHeaderText(null);
-                alert.setContentText("Socio agregado exitosamente");
+                alert.setContentText("Reserva agregada exitosamente");
                 alert.showAndWait();
 
                 limpiarCampos();

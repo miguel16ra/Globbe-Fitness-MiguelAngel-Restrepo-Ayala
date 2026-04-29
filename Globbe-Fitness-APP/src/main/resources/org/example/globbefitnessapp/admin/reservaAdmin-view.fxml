@@ -16,7 +16,7 @@
 <AnchorPane prefHeight="720.0" prefWidth="1180.0"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.globbefitnessapp.controller.ReservaAdminController">
+            fx:controller="org.example.globbefitnessapp.controller.admin.ReservaAdminController">
 
     <children>
         <Label layoutX="35.0" layoutY="20.0" text="Globbe Fitness Center"

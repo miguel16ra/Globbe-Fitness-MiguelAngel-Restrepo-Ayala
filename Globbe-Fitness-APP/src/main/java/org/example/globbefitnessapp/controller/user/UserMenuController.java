@@ -1,4 +1,4 @@
-package org.example.globbefitnessapp.controller;
+package org.example.globbefitnessapp.controller.user;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +44,23 @@ public class UserMenuController implements Initializable {
                 stage.show();
 
                 ((Stage)btnLogOut.getScene().getWindow()).close();
+            }catch (IOException e){
+                System.out.println("Ha ocurrido un error");
+                System.out.println(e.getMessage());
+            }
+        });
+
+        btnMisDatos.setOnAction(event -> {
+            Stage stage = new Stage();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("user/datosUser-view.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.setTitle("Globbe Fitness Center - Mis Datos");
+                stage.show();
+
+                ((Stage)btnMisDatos.getScene().getWindow()).close();
             }catch (IOException e){
                 System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());

@@ -15,4 +15,8 @@ module org.example.globbefitnessapp {
 
     exports org.example.globbefitnessapp.model;
     opens org.example.globbefitnessapp.model to javafx.fxml, com.google.gson, javafx.base;
+    exports org.example.globbefitnessapp.controller.admin;
+    opens org.example.globbefitnessapp.controller.admin to javafx.fxml;
+    exports org.example.globbefitnessapp.controller.user;
+    opens org.example.globbefitnessapp.controller.user to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package org.example.globbefitnessapp.controller;
+package org.example.globbefitnessapp.controller.admin;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,15 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
 import org.example.globbefitnessapp.dao.SocioDAO;
-import org.example.globbefitnessapp.database.DBConnection;
-import org.example.globbefitnessapp.database.DBSchema;
 import org.example.globbefitnessapp.model.Socio;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -120,7 +115,7 @@ public class SocioController implements Initializable {
             Stage stage = new Stage();
 
             try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/admin-view.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Panel de Administrador");
@@ -213,7 +208,6 @@ public class SocioController implements Initializable {
                 txtFechaAlta.setText(socioSeleccionado.getFechaAlta());
                 cmbEstado.setValue(socioSeleccionado.getEstado());
                 cmbIdPlan.setValue(socioSeleccionado.getIdPlan());
-
             }
         });
     }

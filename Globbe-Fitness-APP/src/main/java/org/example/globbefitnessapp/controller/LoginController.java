@@ -43,7 +43,7 @@ public class LoginController implements Initializable {
                     FXMLLoader loader;
                     switch (usuarioLogin.getRol().toLowerCase()) {
                         case "admin" ->{
-                            loader = new FXMLLoader(HelloApplication.class.getResource("admin-view.fxml"));
+                            loader = new FXMLLoader(HelloApplication.class.getResource("admin/admin-view.fxml"));
                             Scene scene = new Scene(loader.load());
                             stage.setScene(scene);
                             stage.setTitle("Globbe Fitness Center - Panel de Administrador");
@@ -52,7 +52,7 @@ public class LoginController implements Initializable {
                             ((Stage) btnLogin.getScene().getWindow()).close();
                         }
                         case "user" ->{
-                            loader = new FXMLLoader(HelloApplication.class.getResource("user-view.fxml"));
+                            loader = new FXMLLoader(HelloApplication.class.getResource("user/user-view.fxml"));
                             Scene scene = new Scene(loader.load());
                             stage.setScene(scene);
                             stage.setTitle("Globbe Fitness Center - Panel de Socio");

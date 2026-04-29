@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="620.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.globbefitnessapp.controller.user.DatosUserController">
+
+    <children>
+        <Label layoutX="35.0" layoutY="20.0" text="Globbe Fitness Center"
+               style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #1f2937;" />
+
+        <Label layoutX="35.0" layoutY="58.0" text="Mis datos"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #4b5563;" />
+
+        <VBox layoutX="35.0" layoutY="105.0" prefWidth="830.0" spacing="12.0"
+              style="-fx-background-color: white; -fx-border-color: #d1d5db; -fx-border-radius: 8; -fx-background-radius: 8;">
+            <padding>
+                <Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/>
+            </padding>
+
+            <Label text="Datos personales"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+
+            <Label text="Consulta tu información registrada en el sistema."
+                   style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" />
+
+            <Separator />
+
+            <VBox spacing="10.0">
+                <Label text="Nombre"/>
+                <TextField fx:id="txtNombre" editable="false"/>
+
+                <Label text="Apellidos"/>
+                <TextField fx:id="txtApellidos" editable="false"/>
+
+                <Label text="DNI"/>
+                <TextField fx:id="txtDni" editable="false"/>
+
+                <Label text="Email"/>
+                <TextField fx:id="txtEmail" editable="false"/>
+
+                <Label text="Teléfono"/>
+                <TextField fx:id="txtTelefono" editable="false"/>
+
+                <Label text="Fecha de alta"/>
+                <TextField fx:id="txtFechaAlta" editable="false"/>
+
+                <Label text="Estado"/>
+                <TextField fx:id="txtEstado" editable="false"/>
+
+                <Label text="Plan"/>
+                <TextField fx:id="txtPlan" editable="false"/>
+            </VBox>
+
+            <Separator />
+
+            <HBox spacing="10.0">
+                <Button fx:id="btnVolver" mnemonicParsing="false" prefWidth="140.0" text="Volver"/>
+                <Button fx:id="btnRefrescar" mnemonicParsing="false" prefWidth="140.0" text="Refrescar"/>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

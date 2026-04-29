@@ -1,4 +1,4 @@
-package org.example.globbefitnessapp.controller;
+package org.example.globbefitnessapp.controller.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +58,7 @@ public class AdminMenuController implements Initializable {
             Stage stage = new Stage();
 
             try{
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("socio-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/socio-view.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Gestión de Socios");
@@ -75,7 +75,7 @@ public class AdminMenuController implements Initializable {
             Stage stage = new Stage();
 
             try{
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("producto-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/producto-view.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Gestión de Productos");
@@ -92,15 +92,35 @@ public class AdminMenuController implements Initializable {
             Stage stage = new Stage();
 
             try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("reservaAdmin-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/reservaAdmin-view.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Gestión de Reservas");
                 stage.show();
+
+                ((Stage) btnReservas.getScene().getWindow()).close();
             }catch (IOException e){
                 System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
             }
+        });
+
+        btnClases.setOnAction(event -> {
+            Stage stage = new Stage();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("admin/clasesAdmin-view.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.setTitle("Globbe Fitness Center - Gestión de Clases");
+                stage.show();
+
+                ((Stage) btnClases.getScene().getWindow()).close();
+            }catch (IOException e){
+                System.out.println("Ha ocurrido un error");
+                System.out.println(e.getMessage());
+            }
+
         });
     }
 }
