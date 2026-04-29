@@ -31,31 +31,28 @@ public class DetalleVentaDAO {
         preparedStatement.executeUpdate();
     }
 
-    public List<DetalleVenta> getAllDetalles(){
+    public List<DetalleVenta> getAllDetalles() throws SQLException {
         List<DetalleVenta> listaDetalleVenta = new ArrayList<>();
         connection = DBConnection.getConnection();
 
         String query =  String.format("SELECT * FROM %s",
                 DBSchema.TAB_DETALLE_VENTA);
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()){
-                int id = resultSet.getInt(DBSchema.DETALLE_VENTA_ID);
-                int cantidad = resultSet.getInt(DBSchema.DETALLE_VENTA_CANTIDAD);
-                double precioUnitario = resultSet.getDouble(DBSchema.DETALLE_VENTA_PUNITARIO);
-                double total = resultSet.getDouble(DBSchema.DETALLE_VENTA_TOTAL);
-                int idVenta = resultSet.getInt(DBSchema.DETALLE_VENTA_ID_VENTA);
-                int idProducto = resultSet.getInt(DBSchema.DETALLE_VENTA_ID_PRODUCTO);
+        preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
 
-                listaDetalleVenta.add(new DetalleVenta(id, cantidad,precioUnitario,total,idVenta,idProducto));
-            }
-        }catch (SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
+        while(resultSet.next()){
+            int id = resultSet.getInt(DBSchema.DETALLE_VENTA_ID);
+            int cantidad = resultSet.getInt(DBSchema.DETALLE_VENTA_CANTIDAD);
+            double precioUnitario = resultSet.getDouble(DBSchema.DETALLE_VENTA_PUNITARIO);
+            double total = resultSet.getDouble(DBSchema.DETALLE_VENTA_TOTAL);
+            int idVenta = resultSet.getInt(DBSchema.DETALLE_VENTA_ID_VENTA);
+            int idProducto = resultSet.getInt(DBSchema.DETALLE_VENTA_ID_PRODUCTO);
+
+            listaDetalleVenta.add(new DetalleVenta(id, cantidad,precioUnitario,total,idVenta,idProducto));
         }
+
         return listaDetalleVenta;
     }
 }

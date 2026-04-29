@@ -11,9 +11,11 @@ import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
 import org.example.globbefitnessapp.dao.UsuarioDAO;
 import org.example.globbefitnessapp.model.Usuario;
+import org.example.globbefitnessapp.model.UsuarioLogueado;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -34,9 +36,15 @@ public class LoginController implements Initializable {
     private void actions() {
         btnLogin.setOnAction(event -> {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
-            Usuario usuarioLogin = usuarioDAO.login(editCorreo.getText(), editPass.getText());
+            Usuario usuarioLogin = null;
+            try {
+                usuarioLogin = usuarioDAO.login(editCorreo.getText(), editPass.getText());
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
 
             if (usuarioLogin != null) {
+                UsuarioLogueado.setUsuario(usuarioLogin);
                 Stage stage = new Stage();
 
                 try {

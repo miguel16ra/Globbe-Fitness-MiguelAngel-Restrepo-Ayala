@@ -13,32 +13,28 @@ public class PlanDAO {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    public List<Plan> getAllPlanes(){
+    public List<Plan> getAllPlanes() throws SQLException {
         List<Plan> listaPlanes = new ArrayList<>();
         connection = DBConnection.getConnection();
 
         String query = String.format("SELECT * FROM %s",
                 DBSchema.TAB_PLAN);
 
-        try{
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
-                int id = resultSet.getInt(DBSchema.PLAN_ID);
-                String nombre = resultSet.getString(DBSchema.PLAN_NOMBRE);
-                String descripcion = resultSet.getString(DBSchema.PLAN_DESCRIPCION);
-                double precio = resultSet.getDouble(DBSchema.PLAN_PRECIO);
-                int duracion = resultSet.getInt(DBSchema.PLAN_DURACION);
-                Boolean activo = resultSet.getBoolean(DBSchema.PLAN_ACTIVO);
+        preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
 
-                listaPlanes.add(new Plan(id,nombre,descripcion,precio,duracion,activo));
-            }
+        while (resultSet.next()){
+            int id = resultSet.getInt(DBSchema.PLAN_ID);
+            String nombre = resultSet.getString(DBSchema.PLAN_NOMBRE);
+            String descripcion = resultSet.getString(DBSchema.PLAN_DESCRIPCION);
+            double precio = resultSet.getDouble(DBSchema.PLAN_PRECIO);
+            int duracion = resultSet.getInt(DBSchema.PLAN_DURACION);
+            String activo = resultSet.getString(DBSchema.PLAN_ACTIVO);
 
-        }catch (SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
+            listaPlanes.add(new Plan(id,nombre,descripcion,precio,duracion,activo));
         }
+
         return listaPlanes;
     }
 }

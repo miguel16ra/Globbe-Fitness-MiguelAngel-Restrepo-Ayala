@@ -22,59 +22,50 @@ public class ProductoDAO {
                 DBSchema.PRODUCTO_STOCK, DBSchema.PRODUCTO_ACTIVO,
                 DBSchema.PRODUCTO_ID_CATEGORIA, DBSchema.PRODUCTO_ID_OFERTA);
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, producto.getNombre());
-            preparedStatement.setString(2, producto.getDescripcion());
-            preparedStatement.setDouble(3, producto.getPrecio());
-            preparedStatement.setInt(4, producto.getStock());
-            preparedStatement.setString(5, producto.getActivo());
-            preparedStatement.setInt(6, producto.getIdCategoria());
-            if (producto.getIdOferta() == null) {
-                preparedStatement.setNull(7, java.sql.Types.INTEGER);
-            } else {
-                preparedStatement.setInt(7, producto.getIdOferta());
-            }
-
-            preparedStatement.executeUpdate();
-
-        }catch(SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, producto.getNombre());
+        preparedStatement.setString(2, producto.getDescripcion());
+        preparedStatement.setDouble(3, producto.getPrecio());
+        preparedStatement.setInt(4, producto.getStock());
+        preparedStatement.setString(5, producto.getActivo());
+        preparedStatement.setInt(6, producto.getIdCategoria());
+        if (producto.getIdOferta() == null) {
+            preparedStatement.setNull(7, java.sql.Types.INTEGER);
+        } else {
+            preparedStatement.setInt(7, producto.getIdOferta());
         }
+
+        preparedStatement.executeUpdate();
     }
 
     public void updateProducto(Producto producto) throws SQLException{}
 
     public void deleteProducto(int id) throws SQLException{}
 
-    public List<Producto> getAllProductos(){
+    public List<Producto> getAllProductos() throws SQLException {
         List<Producto> listaProductos = new ArrayList<>();
         connection = DBConnection.getConnection();
 
         String query = String.format("SELECT * FROM %s",
                 DBSchema.TAB_PRODUCTO);
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()){
-                int id = resultSet.getInt(DBSchema.PRODUCTO_ID);
-                String nombre = resultSet.getString(DBSchema.PRODUCTO_NOMBRE);
-                String descripcion = resultSet.getString(DBSchema.PRODUCTO_DESCRIPCION);
-                double precio = resultSet.getDouble(DBSchema.PRODUCTO_PRECIO);
-                int stock = resultSet.getInt(DBSchema.PRODUCTO_STOCK);
-                String activo = resultSet.getString(DBSchema.PRODUCTO_ACTIVO);
-                int idCategoria = resultSet.getInt(DBSchema.PRODUCTO_ID_CATEGORIA);
-                Integer idOferta = (Integer) resultSet.getObject(DBSchema.PRODUCTO_ID_OFERTA);
+        preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
 
-                listaProductos.add(new Producto(id, nombre, descripcion, precio, stock, activo, idCategoria, idOferta));
-            }
-        }catch(SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
+        while(resultSet.next()){
+            int id = resultSet.getInt(DBSchema.PRODUCTO_ID);
+            String nombre = resultSet.getString(DBSchema.PRODUCTO_NOMBRE);
+            String descripcion = resultSet.getString(DBSchema.PRODUCTO_DESCRIPCION);
+            double precio = resultSet.getDouble(DBSchema.PRODUCTO_PRECIO);
+            int stock = resultSet.getInt(DBSchema.PRODUCTO_STOCK);
+            String activo = resultSet.getString(DBSchema.PRODUCTO_ACTIVO);
+            int idCategoria = resultSet.getInt(DBSchema.PRODUCTO_ID_CATEGORIA);
+            Integer idOferta = (Integer) resultSet.getObject(DBSchema.PRODUCTO_ID_OFERTA);
+
+            listaProductos.add(new Producto(id, nombre, descripcion, precio, stock, activo, idCategoria, idOferta));
         }
+
         return listaProductos;
     }
 }

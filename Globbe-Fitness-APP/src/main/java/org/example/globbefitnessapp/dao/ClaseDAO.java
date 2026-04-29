@@ -34,31 +34,27 @@ public class ClaseDAO {
         preparedStatement.executeUpdate();
     }
 
-    public List<Clase> getAllClases(){
+    public List<Clase> getAllClases() throws SQLException {
         List<Clase> listaClases = new ArrayList<>();
         connection = DBConnection.getConnection();
 
         String query = String.format("SELECT * FROM %s",DBSchema.TAB_CLASE);
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()){
-                int id = resultSet.getInt(DBSchema.CLASE_ID);
-                String nombre = resultSet.getString(DBSchema.CLASE_NOMBRE);
-                String descripcion = resultSet.getString(DBSchema.CLASE_DESCRIPCION);
-                String fecha = resultSet.getString(DBSchema.CLASE_FECHA);
-                String hora = resultSet.getString(DBSchema.CLASE_HORA);
-                String sala = resultSet.getString(DBSchema.CLASE_SALA);
-                int aforoMaximo = resultSet.getInt(DBSchema.CLASE_AFORO);
-                String monitor = resultSet.getString(DBSchema.CLASE_MONITOR);
-                String estado = resultSet.getString(DBSchema.CLASE_ESTADO);
-                listaClases.add(new Clase(id, nombre, descripcion, fecha, hora, sala, aforoMaximo, monitor, estado));
-            }
-        }catch (SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
+        preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+
+        while(resultSet.next()){
+            int id = resultSet.getInt(DBSchema.CLASE_ID);
+            String nombre = resultSet.getString(DBSchema.CLASE_NOMBRE);
+            String descripcion = resultSet.getString(DBSchema.CLASE_DESCRIPCION);
+            String fecha = resultSet.getString(DBSchema.CLASE_FECHA);
+            String hora = resultSet.getString(DBSchema.CLASE_HORA);
+            String sala = resultSet.getString(DBSchema.CLASE_SALA);
+            int aforoMaximo = resultSet.getInt(DBSchema.CLASE_AFORO);
+            String monitor = resultSet.getString(DBSchema.CLASE_MONITOR);
+            String estado = resultSet.getString(DBSchema.CLASE_ESTADO);
+            listaClases.add(new Clase(id, nombre, descripcion, fecha, hora, sala, aforoMaximo, monitor, estado));
         }
         return listaClases;
     }

@@ -84,7 +84,7 @@
 
             <Separator />
 
-            <TextField fx:id="txtBuscar" prefWidth="380.0" promptText="Buscar por nombre, fecha, sala, monitor o estado..." />
+            <TextField fx:id="txtBuscar" prefWidth="380.0" promptText="Buscar por nombre o monitor..." />
 
             <TableView fx:id="tablaClases" prefHeight="570.0" prefWidth="800.0">
                 <columns>

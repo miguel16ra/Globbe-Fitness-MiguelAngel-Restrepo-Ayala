@@ -217,7 +217,7 @@ public class ClaseAdminController implements Initializable {
         try {
             listaClases.addAll(claseDAO.getAllClases());
             tablaClases.setItems(listaFiltrada);
-        }catch (Exception e){
+        }catch (SQLException e){
             System.out.println("Error al obtener las clases");
             System.out.println(e.getMessage());
         }

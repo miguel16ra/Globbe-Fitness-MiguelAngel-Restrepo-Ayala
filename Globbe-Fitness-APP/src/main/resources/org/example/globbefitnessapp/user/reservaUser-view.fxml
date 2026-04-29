@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="652.0" prefWidth="1378.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="org.example.globbefitnessapp.controller.user.ReservasUserController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="15" left="15" right="15" top="15" />
+            </padding>
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Globbe Fitness Center" />
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Reservas" />
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="15">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+
+            <VBox prefHeight="455.0" prefWidth="897.0" spacing="10">
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Clases disponibles" />
+                <TableView fx:id="tablaClases" prefHeight="420.0" prefWidth="771.0">
+                    <columns>
+                        <TableColumn fx:id="colClase" prefWidth="110" text="Clase" />
+                        <TableColumn fx:id="colDescripcion" prefWidth="150" text="Descripción" />
+                        <TableColumn fx:id="colFechaClase" prefWidth="90" text="Fecha" />
+                        <TableColumn fx:id="colHoraClase" prefWidth="70" text="Hora" />
+                        <TableColumn fx:id="colSalaClase" prefWidth="80" text="Sala" />
+                        <TableColumn fx:id="colAforoMaximo" prefWidth="100" text="Aforo máximo" />
+                        <TableColumn fx:id="colMonitorClase" prefWidth="100" text="Monitor" />
+                        <TableColumn fx:id="colEstadoClase" prefWidth="83.0" text="Estado" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox prefHeight="455.0" prefWidth="652.0" spacing="10">
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mis reservas" />
+                <TableView fx:id="tablaReservas" prefHeight="420.0" prefWidth="519.0">
+                    <columns>
+                        <TableColumn fx:id="colClaseReserva" prefWidth="110.0" text="Clase" />
+                        <TableColumn fx:id="colFechaReserva" prefWidth="90.0" text="Fecha" />
+                        <TableColumn fx:id="colHoraReserva" prefWidth="70" text="Hora" />
+                        <TableColumn fx:id="colSalaReserva" prefWidth="80" text="Sala" />
+                        <TableColumn fx:id="colMonitorReserva" prefWidth="100" text="Monitor" />
+                        <TableColumn fx:id="colEstadoReserva" prefWidth="90.0" text="Estado" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="TOP_CENTER" spacing="10" BorderPane.alignment="TOP_CENTER">
+            <padding>
+                <Insets bottom="15" left="15" right="15" top="15" />
+            </padding>
+
+            <Button fx:id="btnReservar" prefHeight="30.0" prefWidth="120.0" text="Reservar Clase" />
+            <Button fx:id="btnVolver" prefHeight="30.0" prefWidth="120.0" text="Volver" />
+        </HBox>
+    </bottom>
+
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+</BorderPane>

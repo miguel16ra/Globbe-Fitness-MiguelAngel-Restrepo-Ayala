@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
+import org.example.globbefitnessapp.model.UsuarioLogueado;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +35,7 @@ public class UserMenuController implements Initializable {
 
     private void actions() {
         btnLogOut.setOnAction(event -> {
+            UsuarioLogueado.cerrarSesion();
             Stage stage = new Stage();
 
             try {
@@ -58,6 +60,23 @@ public class UserMenuController implements Initializable {
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Mis Datos");
+                stage.show();
+
+                ((Stage)btnMisDatos.getScene().getWindow()).close();
+            }catch (IOException e){
+                System.out.println("Ha ocurrido un error");
+                System.out.println(e.getMessage());
+            }
+        });
+
+        btnMisReservas.setOnAction(event -> {
+            Stage stage = new Stage();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("user/reservaUser-view.fxml"));
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.setTitle("Globbe Fitness Center - Mis Reservas");
                 stage.show();
 
                 ((Stage)btnMisDatos.getScene().getWindow()).close();

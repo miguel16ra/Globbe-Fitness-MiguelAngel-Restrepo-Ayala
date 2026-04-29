@@ -14,9 +14,9 @@ public class Plan {
     private String descripcion;
     private double precioMensual;
     private int duracionMeses;
-    private boolean activo;
+    private String activo;
 
-    public Plan(String nombre, String descripcion, double precioMensual, int duracionMeses, boolean activo) {
+    public Plan(String nombre, String descripcion, double precioMensual, int duracionMeses, String activo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioMensual = precioMensual;

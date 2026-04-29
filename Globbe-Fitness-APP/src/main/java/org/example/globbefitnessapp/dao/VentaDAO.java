@@ -21,45 +21,36 @@ public class VentaDAO {
                 DBSchema.VENTA_FECHA, DBSchema.VENTA_METODO_PAGO, DBSchema.VENTA_TOTAL,
                 DBSchema.VENTA_ID_SOCIO);
 
-        try{
-            preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, venta.getFechaVenta());
-            preparedStatement.setString(2, venta.getMetodoPago());
-            preparedStatement.setDouble(3, venta.getTotal());
-            preparedStatement.setInt(4, venta.getIdSocio());
+        preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.executeUpdate();
+        preparedStatement.setString(1, venta.getFechaVenta());
+        preparedStatement.setString(2, venta.getMetodoPago());
+        preparedStatement.setDouble(3, venta.getTotal());
+        preparedStatement.setInt(4, venta.getIdSocio());
 
-        }catch(SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
-        }
+        preparedStatement.executeUpdate();
     }
 
-    public List<Venta> getAllVentas(){
+    public List<Venta> getAllVentas() throws SQLException {
         List<Venta> listaVentas = new ArrayList<>();
         connection = DBConnection.getConnection();
 
         String query = String.format("SELECT * FROM %s",
                 DBSchema.TAB_VENTA);
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()){
-                int id = resultSet.getInt(DBSchema.VENTA_ID);
-                String fecha = resultSet.getString(DBSchema.VENTA_FECHA);
-                String metodoPago = resultSet.getString(DBSchema.VENTA_METODO_PAGO);
-                double total = resultSet.getDouble(DBSchema.VENTA_TOTAL);
-                int idSocio = resultSet.getInt(DBSchema.VENTA_ID_SOCIO);
+        preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
 
-                listaVentas.add(new Venta(id,fecha,metodoPago,total,idSocio));
-            }
-        }catch(SQLException e){
-            System.out.println("Error en la consulta");
-            System.out.println(e.getMessage());
+        while(resultSet.next()){
+            int id = resultSet.getInt(DBSchema.VENTA_ID);
+            String fecha = resultSet.getString(DBSchema.VENTA_FECHA);
+            String metodoPago = resultSet.getString(DBSchema.VENTA_METODO_PAGO);
+            double total = resultSet.getDouble(DBSchema.VENTA_TOTAL);
+            int idSocio = resultSet.getInt(DBSchema.VENTA_ID_SOCIO);
+
+            listaVentas.add(new Venta(id,fecha,metodoPago,total,idSocio));
         }
         return listaVentas;
     }

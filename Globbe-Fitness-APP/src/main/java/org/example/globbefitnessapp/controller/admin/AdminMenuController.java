@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
+import org.example.globbefitnessapp.model.UsuarioLogueado;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,6 +42,7 @@ public class AdminMenuController implements Initializable {
 
     private void actions() {
         btnLogOut.setOnAction(event -> {
+            UsuarioLogueado.cerrarSesion();
             Stage stage = new Stage();
             try{
                 FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
