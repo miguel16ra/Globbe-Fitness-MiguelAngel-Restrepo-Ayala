@@ -3,7 +3,9 @@ package org.example.globbefitnessapp.controller.user;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
@@ -49,6 +51,11 @@ public class UserMenuController implements Initializable {
             }catch (IOException e){
                 System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
         });
 
@@ -66,6 +73,11 @@ public class UserMenuController implements Initializable {
             }catch (IOException e){
                 System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
         });
 
@@ -82,6 +94,31 @@ public class UserMenuController implements Initializable {
                 ((Stage)btnMisDatos.getScene().getWindow()).close();
             }catch (IOException e){
                 System.out.println("Ha ocurrido un error");
+                System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
+            }
+        });
+
+        btnProductos.setOnAction(event -> {
+            Stage stage = new Stage();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("user/tienda-view.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Globbe Fitness Center - Tienda de Productos");
+                stage.show();
+            }catch (IllegalStateException e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
         });

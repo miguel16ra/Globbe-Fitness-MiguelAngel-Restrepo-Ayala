@@ -50,11 +50,11 @@
         <VBox.margin>
             <Insets />
         </VBox.margin></Button>
-    <Button fx:id="btnMisReservas" prefWidth="250.0" text="Ver mis reservas">
+    <Button fx:id="btnMisReservas" prefWidth="250.0" text="Reservas">
         <font>
             <Font size="13.0" />
         </font></Button>
-    <Button fx:id="btnProductos" prefWidth="250.0" text="Ver productos">
+    <Button fx:id="btnProductos" prefWidth="250.0" text="Tienda">
         <font>
             <Font size="13.0" />
         </font></Button>

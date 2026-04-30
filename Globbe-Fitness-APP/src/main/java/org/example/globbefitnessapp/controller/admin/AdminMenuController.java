@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
@@ -53,8 +54,12 @@ public class AdminMenuController implements Initializable {
 
                 ((Stage) btnLogOut.getScene().getWindow()).close();
             }catch (IOException e){
-                System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
         });
 
@@ -70,8 +75,12 @@ public class AdminMenuController implements Initializable {
 
                 ((Stage) btnSocios.getScene().getWindow()).close();
             }catch (IOException e){
-                System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
         });
 
@@ -87,8 +96,12 @@ public class AdminMenuController implements Initializable {
 
                 ((Stage) btnSocios.getScene().getWindow()).close();
             }catch (IOException e){
-                System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
         });
 
@@ -104,8 +117,12 @@ public class AdminMenuController implements Initializable {
 
                 ((Stage) btnReservas.getScene().getWindow()).close();
             }catch (IOException e){
-                System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
         });
 
@@ -121,8 +138,12 @@ public class AdminMenuController implements Initializable {
 
                 ((Stage) btnClases.getScene().getWindow()).close();
             }catch (IOException e){
-                System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
 
         });
@@ -139,8 +160,12 @@ public class AdminMenuController implements Initializable {
 
                 ((Stage) btnUsuarios.getScene().getWindow()).close();
             }catch (IOException e){
-                System.out.println("Ha ocurrido un error");
                 System.out.println(e.getMessage());
+            }catch (IllegalStateException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Error al cargar la pagina");
+                alert.showAndWait();
             }
         });
     }

@@ -40,6 +40,21 @@ public class ProductoDAO {
 
     public void updateProducto(Producto producto) throws SQLException{}
 
+    public void updateStock(int idProducto, int nuevoStock) throws SQLException{
+        connection = DBConnection.getConnection();
+
+        String query = String.format("UPDATE %s SET %s = ? WHERE %s = ?",
+                DBSchema.TAB_PRODUCTO,
+                DBSchema.PRODUCTO_STOCK,
+                DBSchema.PRODUCTO_ID);
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, nuevoStock);
+        preparedStatement.setInt(2, idProducto);
+
+        preparedStatement.executeUpdate();
+    }
+
     public void deleteProducto(int id) throws SQLException{}
 
     public List<Producto> getAllProductos() throws SQLException {

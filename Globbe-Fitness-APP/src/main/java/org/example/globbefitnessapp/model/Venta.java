@@ -21,4 +21,10 @@ public class Venta {
         this.total = total;
         this.idSocio = idSocio;
     }
+
+    public Venta(double total, String fechaVenta, String metodoPago) {
+        this.total = total;
+        this.fechaVenta = fechaVenta;
+        this.metodoPago = metodoPago;
+    }
 }
