@@ -1,0 +1,314 @@
+.login-root {
+    -fx-background-color: linear-gradient(to bottom, #111111, #1b1b1b);
+    -fx-padding: 20;
+    -fx-border-color: #f21717;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.login-header {
+    -fx-background-color: transparent;
+}
+
+.login-title {
+    -fx-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(242,23,23,0.35), 10, 0.2, 0, 2);
+}
+
+.login-subtitle {
+    -fx-fill: #d9d9d9;
+    -fx-font-size: 13px;
+}
+
+.globbe-input {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #111111;
+    -fx-prompt-text-fill: #777777;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: transparent;
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 13px;
+}
+
+.globbe-input:focused {
+    -fx-border-color: #f21717;
+    -fx-border-width: 2;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(242,23,23,0.25), 8, 0.2, 0, 0);
+}
+
+.globbe-button {
+    -fx-background-color: #f21717;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 28 10 28;
+    -fx-cursor: hand;
+}
+
+.globbe-button:hover {
+    -fx-background-color: #c91010;
+}
+
+.globbe-button:pressed {
+    -fx-background-color: #990c0c;
+}
+
+.menu-root {
+    -fx-background-color: #111111;
+}
+
+.menu-title {
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.menu-subtitle {
+    -fx-fill: #f21717; /* Rojo para destacar el panel */
+    -fx-font-weight: bold;
+}
+
+/* Reutilizamos el botón rojo principal para el menú */
+.globbe-button {
+    -fx-background-color: #f21717;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 12 28 12 28;
+}
+
+.globbe-button:hover {
+    -fx-background-color: #c91010;
+}
+
+/* Botón de cerrar sesión con estilo secundario (borde rojo, sin fondo) */
+.globbe-button-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: #f21717;
+    -fx-border-width: 2;
+    -fx-text-fill: #f21717;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 28 10 28;
+}
+
+.globbe-button-secondary:hover {
+    -fx-background-color: #f21717;
+    -fx-text-fill: white;
+}
+
+.datos-root {
+    -fx-background-color: linear-gradient(to bottom, #111111, #1a1a1a);
+}
+
+.screen-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.screen-subtitle {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f21717;
+}
+
+.datos-card {
+    -fx-background-color: white;
+    -fx-border-color: #f21717;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 18, 0.15, 0, 4);
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+
+.card-description {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+}
+
+.field-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.globbe-input-readonly {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #111111;
+    -fx-border-color: #d6d6d6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 12 10 12;
+}
+
+.globbe-input-readonly:focused {
+    -fx-border-color: #f21717;
+    -fx-border-width: 1.5;
+    -fx-background-color: white;
+}
+
+.globbe-separator .line {
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+}
+
+.globbe-button-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: #f21717;
+    -fx-border-width: 2;
+    -fx-text-fill: #f21717;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+
+.globbe-button-secondary:hover {
+    -fx-background-color: #f21717;
+    -fx-text-fill: white;
+}
+
+.reservas-root {
+    -fx-background-color: #111111;
+}
+
+.header-box {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #f21717;
+    -fx-border-width: 0 0 2 0;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.globbe-table {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5;
+    -fx-border-color: #f21717;
+    -fx-border-radius: 5;
+}
+
+/* Cabeceras de tabla */
+.globbe-table .column-header {
+    -fx-background-color: #111111;
+}
+.globbe-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.footer-box {
+    -fx-background-color: #1a1a1a;
+}
+
+.tienda-root {
+    -fx-background-color: linear-gradient(to bottom, #111111, #1a1a1a);
+}
+
+.content-box {
+    -fx-background-color: transparent;
+}
+
+.actions-box {
+    -fx-background-color: transparent;
+}
+
+.purchase-box {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 12;
+    -fx-background-radius: 10;
+    -fx-border-color: #2a2a2a;
+    -fx-border-radius: 10;
+}
+
+.total-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.total-value {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f21717;
+}
+
+.globbe-combo {
+    -fx-background-color: white;
+    -fx-border-color: #d6d6d6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 4 8 4 8;
+}
+
+.globbe-combo:focused {
+    -fx-border-color: #f21717;
+    -fx-border-width: 2;
+}
+
+/* Tablas */
+.globbe-table {
+    -fx-background-color: white;
+    -fx-border-color: #f21717;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-table-cell-border-color: #e5e5e5;
+}
+
+.globbe-table .column-header-background {
+    -fx-background-color: #111111;
+    -fx-background-radius: 8 8 0 0;
+}
+
+.globbe-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #2b2b2b transparent transparent;
+}
+
+.globbe-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.globbe-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-text-background-color: #111111;
+}
+
+.globbe-table .table-row-cell:odd {
+    -fx-background-color: #f8f8f8;
+}
+
+.globbe-table .table-row-cell:selected {
+    -fx-background-color: #f21717;
+}
+
+.globbe-table .table-row-cell:selected .text {
+    -fx-fill: white;
+}
+
+.globbe-table .filler {
+    -fx-background-color: #111111;
+}
+

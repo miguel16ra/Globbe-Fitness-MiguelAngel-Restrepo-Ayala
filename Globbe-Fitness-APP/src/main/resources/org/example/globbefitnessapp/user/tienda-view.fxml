@@ -9,40 +9,47 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="820.0" prefWidth="1350.0"
-            xmlns="http://javafx.com/javafx/24.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.globbefitnessapp.controller.user.TiendaController">
+<BorderPane prefHeight="820.0" prefWidth="1335.0" styleClass="tienda-root" stylesheets="@../css/globbe-app.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.globbefitnessapp.controller.user.TiendaController">
 
     <top>
-        <VBox spacing="10.0">
+        <VBox spacing="10.0" styleClass="header-box">
             <padding>
-                <Insets top="20.0" right="20.0" bottom="10.0" left="20.0"/>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
             </padding>
 
-            <Label text="Globbe Fitness Center"
-                   style="-fx-font-size: 28px; -fx-font-weight: bold;" />
-
-            <Label text="Tienda"
-                   style="-fx-font-size: 14px;" />
+            <Label styleClass="screen-title" text="Globbe Fitness Center">
+            <padding>
+               <Insets left="10.0" />
+            </padding>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></Label>
+            <Label styleClass="screen-subtitle" text="Tienda">
+            <padding>
+               <Insets left="13.0" />
+            </padding>
+            <VBox.margin>
+               <Insets top="-15.0" />
+            </VBox.margin></Label>
         </VBox>
     </top>
 
     <center>
-        <VBox spacing="20.0">
+        <VBox spacing="20.0" styleClass="content-box">
             <padding>
-                <Insets top="10.0" right="20.0" bottom="20.0" left="20.0"/>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
             </padding>
 
             <HBox spacing="20.0" VBox.vgrow="ALWAYS">
                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
-                    <Label text="Productos"
-                           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <Label styleClass="section-title" text="Productos">
+                  <VBox.margin>
+                     <Insets left="2.0" />
+                  </VBox.margin></Label>
 
-                    <TableView fx:id="tablaProductos" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="tablaProductos" styleClass="globbe-table" VBox.vgrow="ALWAYS">
                         <columns>
                             <TableColumn fx:id="colNombreProducto" prefWidth="140.0" text="Nombre" />
                             <TableColumn fx:id="colDescripcionProducto" prefWidth="240.0" text="Descripción" />
@@ -53,74 +60,54 @@
                     </TableView>
                 </VBox>
 
-                <VBox alignment="CENTER" spacing="15.0">
+                <VBox alignment="CENTER" spacing="15.0" styleClass="actions-box">
                     <padding>
-                        <Insets top="40.0" right="5.0" bottom="5.0" left="5.0"/>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="40.0" />
                     </padding>
 
-                    <Button fx:id="btnAnadir"
-                            mnemonicParsing="false"
-                            prefWidth="150.0"
-                            prefHeight="35.0"
-                            text="Añadir" />
+                    <Button fx:id="btnAnadir" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" styleClass="globbe-button" text="Añadir" />
 
-                    <Button fx:id="btnQuitar"
-                            mnemonicParsing="false"
-                            prefWidth="150.0"
-                            prefHeight="35.0"
-                            text="Quitar" />
+                    <Button fx:id="btnQuitar" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" styleClass="globbe-button-secondary" text="Quitar" />
                 </VBox>
 
                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
-                    <Label text="Carrito"
-                           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <Label styleClass="section-title" text="Carrito" />
 
-                    <TableView fx:id="tablaCarrito" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="tablaCarrito" styleClass="globbe-table" VBox.vgrow="ALWAYS">
                         <columns>
                             <TableColumn fx:id="colNombreCarrito" prefWidth="170.0" text="Nombre" />
                             <TableColumn fx:id="colPrecioCarrito" prefWidth="90.0" text="Precio" />
                             <TableColumn fx:id="colCantidadCarrito" prefWidth="90.0" text="Cantidad" />
-                            <TableColumn fx:id="colSubtotalCarrito" prefWidth="110.0" text="Subtotal" />
+                            <TableColumn fx:id="colSubtotalCarrito" prefWidth="120.0" text="Subtotal" />
                         </columns>
                     </TableView>
                 </VBox>
             </HBox>
 
-            <Separator />
+            <Separator styleClass="globbe-separator" />
 
-            <HBox alignment="CENTER_RIGHT" spacing="15.0">
-                <Label text="Método de pago:"
-                       style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <HBox alignment="CENTER_RIGHT" spacing="15.0" styleClass="purchase-box">
+                <Label styleClass="field-label" text="Método de pago:" />
 
-                <ComboBox fx:id="cbMetodoPago" prefWidth="160.0" promptText="Seleccione método" />
+                <ComboBox fx:id="cbMetodoPago" prefWidth="160.0" promptText="Seleccione método" styleClass="globbe-combo" />
 
-                <Label text="Total:"
-                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label styleClass="total-label" text="Total:" />
 
-                <Label fx:id="lblTotal"
-                       text="0.00 €"
-                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: green;" />
+                <Label fx:id="lblTotal" styleClass="total-value" text="0.00 €" />
 
-                <Button fx:id="btnFinalizarCompra"
-                        mnemonicParsing="false"
-                        prefWidth="180.0"
-                        prefHeight="35.0"
-                        text="Finalizar compra" />
+                <Button fx:id="btnFinalizarCompra" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="globbe-button" text="Finalizar compra" />
 
-                <Button fx:id="btnVolver"
-                        mnemonicParsing="false"
-                        prefWidth="120.0"
-                        prefHeight="35.0"
-                        text="Volver" />
+                <Button fx:id="btnVolver" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="globbe-button-secondary" text="Volver" />
             </HBox>
 
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
-                <Label text="Compras"
-                       style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                <Label styleClass="section-title" text="Compras">
+               <VBox.margin>
+                  <Insets left="2.0" />
+               </VBox.margin></Label>
 
-                <TableView fx:id="tablaCompras" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tablaCompras" styleClass="globbe-table" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colNombreCompra" prefWidth="220.0" text="Nombre" />
                         <TableColumn fx:id="colTotalCompra" prefWidth="120.0" text="Total" />
                         <TableColumn fx:id="colFechaCompra" prefWidth="180.0" text="Fecha de venta" />
                         <TableColumn fx:id="colMetodoPagoCompra" prefWidth="140.0" text="Método de pago" />

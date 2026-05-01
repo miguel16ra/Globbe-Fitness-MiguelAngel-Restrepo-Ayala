@@ -20,6 +20,7 @@ import org.example.globbefitnessapp.model.Socio;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class SocioController implements Initializable {
@@ -89,7 +90,7 @@ public class SocioController implements Initializable {
     private TextField txtEmail;
 
     @FXML
-    private TextField txtFechaAlta;
+    private DatePicker dpFechaAlta;
 
     @FXML
     private ComboBox<String> cmbEstado;
@@ -151,7 +152,7 @@ public class SocioController implements Initializable {
                         txtDni.getText(),
                         txtEmail.getText(),
                         txtTelefono.getText(),
-                        txtFechaAlta.getText(),
+                        String.valueOf(dpFechaAlta.getValue()),
                         cmbEstado.getValue(),
                         cmbIdPlan.getValue(),
                         txtPassword.getText()
@@ -211,7 +212,7 @@ public class SocioController implements Initializable {
                 txtDni.setText(socioSeleccionado.getDni());
                 txtEmail.setText(socioSeleccionado.getEmail());
                 txtTelefono.setText(socioSeleccionado.getTelefono());
-                txtFechaAlta.setText(socioSeleccionado.getFechaAlta());
+                dpFechaAlta.setValue(LocalDate.parse(socioSeleccionado.getFechaAlta()));
                 cmbEstado.setValue(socioSeleccionado.getEstado());
                 cmbIdPlan.setValue(socioSeleccionado.getIdPlan());
             }
@@ -240,7 +241,7 @@ public class SocioController implements Initializable {
         txtDni.clear();
         txtEmail.clear();
         txtTelefono.clear();
-        txtFechaAlta.clear();
+        dpFechaAlta.setValue(null);
         txtPassword.clear();
         txtBuscar.clear();
         cmbEstado.setValue(null);

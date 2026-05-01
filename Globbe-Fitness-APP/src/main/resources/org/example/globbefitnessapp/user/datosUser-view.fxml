@@ -9,54 +9,60 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="806.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.globbefitnessapp.controller.user.DatosUserController">
+<AnchorPane prefHeight="955.0" prefWidth="900.0" styleClass="datos-root" stylesheets="@../css/globbe-app.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.globbefitnessapp.controller.user.DatosUserController">
 
     <children>
-        <Label layoutX="35.0" layoutY="20.0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #1f2937;" text="Globbe Fitness Center" />
+        <Label layoutX="35.0" layoutY="20.0" styleClass="screen-title" text="Globbe Fitness Center">
+         <padding>
+            <Insets left="3.0" top="15.0" />
+         </padding></Label>
 
-        <Label layoutX="35.0" layoutY="58.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #4b5563;" text="Mis datos" />
+        <Label layoutX="35.0" layoutY="58.0" styleClass="screen-subtitle" text="Mis datos">
+         <padding>
+            <Insets left="3.0" top="15.0" />
+         </padding></Label>
 
-        <VBox layoutX="35.0" layoutY="105.0" prefWidth="830.0" spacing="12.0" style="-fx-background-color: white; -fx-border-color: #d1d5db; -fx-border-radius: 8; -fx-background-radius: 8;">
+        <VBox layoutX="35.0" layoutY="105.0" prefHeight="771.0" prefWidth="830.0" spacing="12.0" styleClass="datos-card">
             <padding>
                 <Insets bottom="18.0" left="18.0" right="18.0" top="18.0" />
             </padding>
 
-            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Datos personales" />
+            <Label styleClass="card-title" text="Datos personales" />
 
-            <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Consulta tu información registrada en el sistema." />
+            <Label styleClass="card-description" text="Consulta tu información registrada en el sistema." />
 
-            <Separator />
+            <Separator styleClass="globbe-separator" />
 
             <VBox spacing="10.0">
-                <Label text="Nombre" />
-                <TextField fx:id="txtNombre" editable="false" />
+                <Label styleClass="field-label" text="Nombre" />
+                <TextField fx:id="txtNombre" editable="false" styleClass="globbe-input-readonly" />
 
-                <Label text="Apellidos" />
-                <TextField fx:id="txtApellidos" editable="false" />
+                <Label styleClass="field-label" text="Apellidos" />
+                <TextField fx:id="txtApellidos" editable="false" styleClass="globbe-input-readonly" />
 
-                <Label text="DNI" />
-                <TextField fx:id="txtDni" editable="false" />
+                <Label styleClass="field-label" text="DNI" />
+                <TextField fx:id="txtDni" editable="false" styleClass="globbe-input-readonly" />
 
-                <Label text="Email" />
-                <TextField fx:id="txtEmail" editable="false" />
+                <Label styleClass="field-label" text="Email" />
+                <TextField fx:id="txtEmail" editable="false" styleClass="globbe-input-readonly" />
 
-                <Label text="Teléfono" />
-                <TextField fx:id="txtTelefono" editable="false" />
+                <Label styleClass="field-label" text="Teléfono" />
+                <TextField fx:id="txtTelefono" editable="false" styleClass="globbe-input-readonly" />
 
-                <Label text="Fecha de alta" />
-                <TextField fx:id="txtFechaAlta" editable="false" />
+                <Label styleClass="field-label" text="Fecha de alta" />
+                <TextField fx:id="txtFechaAlta" editable="false" styleClass="globbe-input-readonly" />
 
-                <Label text="Estado" />
-                <TextField fx:id="txtEstado" editable="false" />
+                <Label styleClass="field-label" text="Estado" />
+                <TextField fx:id="txtEstado" editable="false" styleClass="globbe-input-readonly" />
 
-                <Label text="Plan" />
-                <TextField fx:id="txtPlan" editable="false" />
+                <Label styleClass="field-label" text="Plan" />
+                <TextField fx:id="txtPlan" editable="false" styleClass="globbe-input-readonly" />
             </VBox>
 
-            <Separator />
+            <Separator styleClass="globbe-separator" />
 
             <HBox spacing="10.0">
-                <Button fx:id="btnVolver" mnemonicParsing="false" prefWidth="140.0" text="Volver" />
+                <Button fx:id="btnVolver" mnemonicParsing="false" prefWidth="140.0" styleClass="globbe-button-secondary" text="Volver" />
             </HBox>
         </VBox>
     </children>

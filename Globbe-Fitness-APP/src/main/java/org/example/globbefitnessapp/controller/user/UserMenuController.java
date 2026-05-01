@@ -113,6 +113,7 @@ public class UserMenuController implements Initializable {
                 stage.setScene(scene);
                 stage.setTitle("Globbe Fitness Center - Tienda de Productos");
                 stage.show();
+                ((Stage)btnProductos.getScene().getWindow()).close();
             }catch (IllegalStateException e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
