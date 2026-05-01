@@ -189,6 +189,94 @@ public class SocioController implements Initializable {
                 );
             }
         });
+
+        btnActualizar.setOnAction(event -> {
+            Socio socioSeleccionado = tablaSocios.getSelectionModel().getSelectedItem();
+
+            if (socioSeleccionado == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar socio");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona un socio de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            if (camposVaciosActualizar()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Campos vacíos");
+                alert.setHeaderText(null);
+                alert.setContentText("Rellena los campos obligatorios");
+                alert.showAndWait();
+                return;
+            }
+
+            try {
+                socioSeleccionado.setNombre(txtNombre.getText());
+                socioSeleccionado.setApellidos(txtApellidos.getText());
+                socioSeleccionado.setDni(txtDni.getText());
+                socioSeleccionado.setEmail(txtEmail.getText());
+                socioSeleccionado.setTelefono(txtTelefono.getText());
+                socioSeleccionado.setFechaAlta(String.valueOf(dpFechaAlta.getValue()));
+                socioSeleccionado.setEstado(cmbEstado.getValue());
+                socioSeleccionado.setIdPlan(cmbIdPlan.getValue());
+
+                if (!txtPassword.getText().isEmpty()) {
+                    socioSeleccionado.setPassword(txtPassword.getText());
+                }
+
+                socioDAO.updateSocioUsuario(socioSeleccionado);
+                cargarSocios();
+                limpiarCampos();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar socio");
+                alert.setHeaderText(null);
+                alert.setContentText("Socio actualizado correctamente");
+                alert.showAndWait();
+
+            } catch (SQLException e) {
+                System.out.println("Error al actualizar socio");
+                System.out.println(e.getMessage());
+            }
+        });
+
+        btnEliminar.setOnAction(event -> {
+            Socio socioSeleccionado = tablaSocios.getSelectionModel().getSelectedItem();
+
+            if (socioSeleccionado == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Eliminar socio");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona un socio de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmar eliminación");
+            confirmacion.setHeaderText(null);
+            confirmacion.setContentText("¿Seguro que quieres eliminar al socio seleccionado?");
+
+            if (confirmacion.showAndWait().get() == ButtonType.OK) {
+                try {
+                    socioDAO.deleteSocioUsuario(socioSeleccionado);
+
+                    cargarSocios();
+                    limpiarCampos();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Eliminar socio");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Socio eliminado correctamente");
+                    alert.showAndWait();
+
+                } catch (SQLException e) {
+                    System.out.println("Error al eliminar socio");
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
     }
 
     private void initGUI() {
@@ -228,9 +316,22 @@ public class SocioController implements Initializable {
     private boolean camposVacios() {
         return txtNombre.getText().isEmpty()
                 || txtApellidos.getText().isEmpty()
-                || txtTelefono.getText().isEmpty()
+                || txtDni.getText().isEmpty()
                 || txtEmail.getText().isEmpty()
+                || txtTelefono.getText().isEmpty()
+                || dpFechaAlta.getValue() == null
                 || txtPassword.getText().isEmpty()
+                || cmbEstado.getValue() == null
+                || cmbIdPlan.getValue() == null;
+    }
+
+    private boolean camposVaciosActualizar() {
+        return txtNombre.getText().isEmpty()
+                || txtApellidos.getText().isEmpty()
+                || txtDni.getText().isEmpty()
+                || txtEmail.getText().isEmpty()
+                || txtTelefono.getText().isEmpty()
+                || dpFechaAlta.getValue() == null
                 || cmbEstado.getValue() == null
                 || cmbIdPlan.getValue() == null;
     }

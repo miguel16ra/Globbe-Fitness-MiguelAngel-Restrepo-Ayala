@@ -179,6 +179,94 @@ public class ReservaAdminController implements Initializable {
             }
         });
 
+        btnActualizar.setOnAction(event -> {
+            Reserva reservaSeleccionada = tablaReservas.getSelectionModel().getSelectedItem();
+
+            if (reservaSeleccionada == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar reserva");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona una reserva de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            if (camposVacios()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Campos vacíos");
+                alert.setHeaderText(null);
+                alert.setContentText("Por favor rellene todos los campos");
+                alert.showAndWait();
+                return;
+            }
+
+            try {
+                reservaSeleccionada.setFechaReserva(String.valueOf(dpFechaReserva.getValue()));
+                reservaSeleccionada.setEstado(cmbEstado.getValue());
+                reservaSeleccionada.setAsistencia(cmbAsistencia.getValue());
+                reservaSeleccionada.setIdSocio(Integer.parseInt(txtIdSocio.getText()));
+                reservaSeleccionada.setIdClase(Integer.parseInt(txtIdClase.getText()));
+
+                reservaDAO.updateReserva(reservaSeleccionada);
+
+                cargarReservas();
+                limpiarCampos();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar reserva");
+                alert.setHeaderText(null);
+                alert.setContentText("Reserva actualizada correctamente");
+                alert.showAndWait();
+
+            } catch (SQLException e) {
+                System.out.println("Error al actualizar reserva");
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Formato incorrecto");
+                alert.setHeaderText(null);
+                alert.setContentText("Id socio e id clase deben ser numéricos");
+                alert.showAndWait();
+            }
+        });
+
+        btnEliminar.setOnAction(event -> {
+            Reserva reservaSeleccionada = tablaReservas.getSelectionModel().getSelectedItem();
+
+            if (reservaSeleccionada == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Eliminar reserva");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona una reserva de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmar eliminación");
+            confirmacion.setHeaderText(null);
+            confirmacion.setContentText("¿Seguro que quieres eliminar la reserva seleccionada?");
+
+            if (confirmacion.showAndWait().get() == ButtonType.OK) {
+                try {
+                    reservaDAO.deleteReserva(reservaSeleccionada.getIdReserva());
+
+                    cargarReservas();
+                    limpiarCampos();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Eliminar reserva");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Reserva eliminada correctamente");
+                    alert.showAndWait();
+
+                } catch (SQLException e) {
+                    System.out.println("Error al eliminar reserva");
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
+
     }
 
     private boolean camposVacios() {

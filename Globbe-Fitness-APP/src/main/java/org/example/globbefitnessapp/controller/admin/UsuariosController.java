@@ -127,9 +127,92 @@ public class UsuariosController implements Initializable {
             limpiarCampos();
         });
 
-        btnActualizar.setOnAction(event -> {});
+        btnActualizar.setOnAction(event -> {
+            Usuario usuarioSeleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
 
-        btnEliminar.setOnAction(event -> {});
+            if (usuarioSeleccionado == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar usuario");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona un usuario de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            if (txtNombre.getText().isEmpty()
+                    || txtApellidos.getText().isEmpty()
+                    || txtCorreo.getText().isEmpty()
+                    || txtPassword.getText().isEmpty()
+                    || comboRol.getValue() == null) {
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Campos vacíos");
+                alert.setHeaderText(null);
+                alert.setContentText("Rellena todos los campos");
+                alert.showAndWait();
+                return;
+            }
+
+            try {
+                usuarioSeleccionado.setNombre(txtNombre.getText());
+                usuarioSeleccionado.setApellidos(txtApellidos.getText());
+                usuarioSeleccionado.setCorreo(txtCorreo.getText());
+                usuarioSeleccionado.setPassword(txtPassword.getText());
+                usuarioSeleccionado.setRol(comboRol.getValue());
+
+                usuarioDAO.updateUsuarioSocio(usuarioSeleccionado);
+
+                cargarUsuarios();
+                limpiarCampos();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar usuario");
+                alert.setHeaderText(null);
+                alert.setContentText("Usuario actualizado correctamente");
+                alert.showAndWait();
+
+            } catch (Exception e) {
+                System.out.println("Error al actualizar usuario");
+                System.out.println(e.getMessage());
+            }
+        });
+
+        btnEliminar.setOnAction(event -> {
+            Usuario usuarioSeleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
+
+            if (usuarioSeleccionado == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Eliminar usuario");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona un usuario de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmar eliminación");
+            confirmacion.setHeaderText(null);
+            confirmacion.setContentText("¿Seguro que quieres eliminar el usuario seleccionado?");
+
+            if (confirmacion.showAndWait().get() == ButtonType.OK) {
+                try {
+                    usuarioDAO.deleteUsuarioSocio(usuarioSeleccionado);
+
+                    cargarUsuarios();
+                    limpiarCampos();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Eliminar usuario");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Usuario eliminado correctamente");
+                    alert.showAndWait();
+
+                } catch (Exception e) {
+                    System.out.println("Error al eliminar usuario");
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
 
         txtBuscar.textProperty().addListener(new ChangeListener<String>() {
             @Override

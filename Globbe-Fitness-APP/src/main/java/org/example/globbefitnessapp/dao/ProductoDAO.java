@@ -38,7 +38,40 @@ public class ProductoDAO {
         preparedStatement.executeUpdate();
     }
 
-    public void updateProducto(Producto producto) throws SQLException{}
+    public void updateProducto(Producto producto) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String query = String.format(
+                "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                DBSchema.TAB_PRODUCTO,
+                DBSchema.PRODUCTO_NOMBRE,
+                DBSchema.PRODUCTO_DESCRIPCION,
+                DBSchema.PRODUCTO_PRECIO,
+                DBSchema.PRODUCTO_STOCK,
+                DBSchema.PRODUCTO_ACTIVO,
+                DBSchema.PRODUCTO_ID_CATEGORIA,
+                DBSchema.PRODUCTO_ID_OFERTA,
+                DBSchema.PRODUCTO_ID
+        );
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, producto.getNombre());
+        preparedStatement.setString(2, producto.getDescripcion());
+        preparedStatement.setDouble(3, producto.getPrecio());
+        preparedStatement.setInt(4, producto.getStock());
+        preparedStatement.setString(5, producto.getActivo());
+        preparedStatement.setInt(6, producto.getIdCategoria());
+
+        if (producto.getIdOferta() == null) {
+            preparedStatement.setNull(7, Types.INTEGER);
+        } else {
+            preparedStatement.setInt(7, producto.getIdOferta());
+        }
+
+        preparedStatement.setInt(8, producto.getIdProducto());
+
+        preparedStatement.executeUpdate();
+    }
 
     public void updateStock(int idProducto, int nuevoStock) throws SQLException{
         connection = DBConnection.getConnection();
@@ -55,7 +88,20 @@ public class ProductoDAO {
         preparedStatement.executeUpdate();
     }
 
-    public void deleteProducto(int id) throws SQLException{}
+    public void deleteProducto(int id) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String query = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                DBSchema.TAB_PRODUCTO,
+                DBSchema.PRODUCTO_ID
+        );
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+
+        preparedStatement.executeUpdate();
+    }
 
     public List<Producto> getAllProductos() throws SQLException {
         List<Producto> listaProductos = new ArrayList<>();

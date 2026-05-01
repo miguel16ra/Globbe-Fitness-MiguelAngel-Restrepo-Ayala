@@ -195,6 +195,96 @@ public class ProductoController implements Initializable {
                 System.out.println(e.getMessage());
             }
         });
+
+        btnActualizar.setOnAction(event -> {
+            Producto productoSeleccionado = tablaProductos.getSelectionModel().getSelectedItem();
+
+            if (productoSeleccionado == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar producto");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona un producto de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            if (camposVacios()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Campos vacíos");
+                alert.setHeaderText(null);
+                alert.setContentText("Por favor rellene todos los campos obligatorios");
+                alert.showAndWait();
+                return;
+            }
+
+            try {
+                productoSeleccionado.setNombre(txtNombre.getText());
+                productoSeleccionado.setDescripcion(txtDescripcion.getText());
+                productoSeleccionado.setPrecio(Double.parseDouble(txtPrecio.getText()));
+                productoSeleccionado.setStock(Integer.parseInt(txtStock.getText()));
+                productoSeleccionado.setActivo(cmbActivo.getValue());
+                productoSeleccionado.setIdCategoria(cmbIdCategoria.getValue());
+                productoSeleccionado.setIdOferta(cmbIdOferta.getValue());
+
+                productoDAO.updateProducto(productoSeleccionado);
+
+                cargarProductos();
+                limpiarCampos();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar producto");
+                alert.setHeaderText(null);
+                alert.setContentText("Producto actualizado correctamente");
+                alert.showAndWait();
+
+            } catch (SQLException e) {
+                System.out.println("Error al actualizar producto");
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Formato incorrecto");
+                alert.setHeaderText(null);
+                alert.setContentText("Precio y stock deben ser numéricos");
+                alert.showAndWait();
+            }
+        });
+
+        btnEliminar.setOnAction(event -> {
+            Producto productoSeleccionado = tablaProductos.getSelectionModel().getSelectedItem();
+
+            if (productoSeleccionado == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Eliminar producto");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona un producto de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmar eliminación");
+            confirmacion.setHeaderText(null);
+            confirmacion.setContentText("¿Seguro que quieres eliminar el producto seleccionado?");
+
+            if (confirmacion.showAndWait().get() == ButtonType.OK) {
+                try {
+                    productoDAO.deleteProducto(productoSeleccionado.getIdProducto());
+
+                    cargarProductos();
+                    limpiarCampos();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Eliminar producto");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Producto eliminado correctamente");
+                    alert.showAndWait();
+
+                } catch (SQLException e) {
+                    System.out.println("Error al eliminar producto");
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
     }
 
     private boolean camposVacios() {

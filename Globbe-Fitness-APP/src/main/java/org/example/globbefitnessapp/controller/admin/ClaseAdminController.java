@@ -205,6 +205,97 @@ public class ClaseAdminController implements Initializable {
                 System.out.println(e.getMessage());
             }
         });
+
+        btnActualizar.setOnAction(event -> {
+            Clase claseSeleccionada = tablaClases.getSelectionModel().getSelectedItem();
+
+            if (claseSeleccionada == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar clase");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona una clase de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            if (camposVacios()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Campos vacíos");
+                alert.setHeaderText(null);
+                alert.setContentText("Por favor rellene todos los campos");
+                alert.showAndWait();
+                return;
+            }
+
+            try {
+                claseSeleccionada.setNombre(txtNombre.getText());
+                claseSeleccionada.setDescripcion(txtDescripcion.getText());
+                claseSeleccionada.setFecha(String.valueOf(dpFecha.getValue()));
+                claseSeleccionada.setHora(txtHora.getText());
+                claseSeleccionada.setSala(txtSala.getText());
+                claseSeleccionada.setAforoMaximo(Integer.parseInt(txtAforoMaximo.getText()));
+                claseSeleccionada.setMonitor(txtMonitor.getText());
+                claseSeleccionada.setEstado(cmbEstado.getValue());
+
+                claseDAO.updateClase(claseSeleccionada);
+
+                cargarClases();
+                limpiarCampos();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Actualizar clase");
+                alert.setHeaderText(null);
+                alert.setContentText("Clase actualizada correctamente");
+                alert.showAndWait();
+
+            } catch (SQLException e) {
+                System.out.println("Error al actualizar clase");
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Formato incorrecto");
+                alert.setHeaderText(null);
+                alert.setContentText("El aforo máximo debe ser un número");
+                alert.showAndWait();
+            }
+        });
+
+        btnEliminar.setOnAction(event -> {
+            Clase claseSeleccionada = tablaClases.getSelectionModel().getSelectedItem();
+
+            if (claseSeleccionada == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Eliminar clase");
+                alert.setHeaderText(null);
+                alert.setContentText("Selecciona una clase de la tabla");
+                alert.showAndWait();
+                return;
+            }
+
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmacion.setTitle("Confirmar eliminación");
+            confirmacion.setHeaderText(null);
+            confirmacion.setContentText("¿Seguro que quieres eliminar la clase seleccionada?");
+
+            if (confirmacion.showAndWait().get() == ButtonType.OK) {
+                try {
+                    claseDAO.deleteClase(claseSeleccionada.getIdClase());
+
+                    cargarClases();
+                    limpiarCampos();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Eliminar clase");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Clase eliminada correctamente");
+                    alert.showAndWait();
+
+                } catch (SQLException e) {
+                    System.out.println("Error al eliminar clase");
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
     }
 
     private void instances() {
@@ -214,6 +305,7 @@ public class ClaseAdminController implements Initializable {
     }
 
     private void cargarClases() {
+        listaClases.clear();
         try {
             listaClases.addAll(claseDAO.getAllClases());
             tablaClases.setItems(listaFiltrada);

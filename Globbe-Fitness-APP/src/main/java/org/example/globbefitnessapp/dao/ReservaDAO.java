@@ -35,7 +35,20 @@ public class ReservaDAO {
         preparedStatement.executeUpdate();
     }
 
-    public void deleteReserva(int id) throws SQLException{}
+    public void deleteReserva(int id) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String query = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                DBSchema.TAB_RESERVA,
+                DBSchema.RESERVA_ID
+        );
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+
+        preparedStatement.executeUpdate();
+    }
 
     public List<Reserva> getAllReservas() throws SQLException {
         List<Reserva> listaReservas = new ArrayList<>();
@@ -105,5 +118,30 @@ public class ReservaDAO {
         }
 
         return lista;
+    }
+
+    public void updateReserva(Reserva reserva) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String query = String.format(
+                "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                DBSchema.TAB_RESERVA,
+                DBSchema.RESERVA_FECHA,
+                DBSchema.RESERVA_ESTADO,
+                DBSchema.RESERVA_ASISTENCIA,
+                DBSchema.RESERVA_ID_SOCIO,
+                DBSchema.RESERVA_ID_CLASE,
+                DBSchema.RESERVA_ID
+        );
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, reserva.getFechaReserva());
+        preparedStatement.setString(2, reserva.getEstado());
+        preparedStatement.setString(3, reserva.getAsistencia());
+        preparedStatement.setInt(4, reserva.getIdSocio());
+        preparedStatement.setInt(5, reserva.getIdClase());
+        preparedStatement.setInt(6, reserva.getIdReserva());
+
+        preparedStatement.executeUpdate();
     }
 }

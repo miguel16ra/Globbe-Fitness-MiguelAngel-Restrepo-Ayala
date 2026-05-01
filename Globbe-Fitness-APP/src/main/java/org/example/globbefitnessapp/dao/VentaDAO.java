@@ -32,29 +32,6 @@ public class VentaDAO {
         preparedStatement.executeUpdate();
     }
 
-    public List<Venta> getAllVentas() throws SQLException {
-        List<Venta> listaVentas = new ArrayList<>();
-        connection = DBConnection.getConnection();
-
-        String query = String.format("SELECT * FROM %s",
-                DBSchema.TAB_VENTA);
-
-
-        preparedStatement = connection.prepareStatement(query);
-        resultSet = preparedStatement.executeQuery();
-
-        while(resultSet.next()){
-            int id = resultSet.getInt(DBSchema.VENTA_ID);
-            String fecha = resultSet.getString(DBSchema.VENTA_FECHA);
-            String metodoPago = resultSet.getString(DBSchema.VENTA_METODO_PAGO);
-            double total = resultSet.getDouble(DBSchema.VENTA_TOTAL);
-            int idSocio = resultSet.getInt(DBSchema.VENTA_ID_SOCIO);
-
-            listaVentas.add(new Venta(id,fecha,metodoPago,total,idSocio));
-        }
-        return listaVentas;
-    }
-
     public List<Venta> getVentasByID(int idBuscar) throws SQLException {
         List<Venta> listaVentas = new ArrayList<>();
         connection = DBConnection.getConnection();

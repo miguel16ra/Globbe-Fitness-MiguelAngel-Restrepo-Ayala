@@ -73,7 +73,7 @@
                                 <TextField fx:id="txtTelefono" prefWidth="220" promptText="Introduce el teléfono" styleClass="globbe-input" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                                 <Label styleClass="field-label" text="Fecha Alta:" GridPane.rowIndex="7" />
-                                <DatePicker fx:id="txtFechaAlta" prefWidth="220" promptText="YYYY-MM-DD" styleClass="globbe-datepicker" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <DatePicker fx:id="dpFechaAlta" prefWidth="220" promptText="YYYY-MM-DD" styleClass="globbe-datepicker" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
                                 <Label styleClass="field-label" text="Estado:" GridPane.rowIndex="8" />
                                 <ComboBox fx:id="cmbEstado" prefWidth="220" promptText="Selecciona estado" styleClass="globbe-combo" GridPane.columnIndex="1" GridPane.rowIndex="8" />

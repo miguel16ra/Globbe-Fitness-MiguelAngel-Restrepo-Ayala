@@ -42,26 +42,6 @@ public class UsuarioDAO {
         return null;
     }
 
-    public void insertUsuario(Usuario usuario) throws SQLException{
-        connection = DBConnection.getConnection();
-
-        String query = String.format("INSERT INTO %s (%s,%s,%s,%s,%s) VALUES (?,?,?,?,?)",
-                DBSchema.TAB_USUARIO,
-                DBSchema.USUARIO_NOMBRE, DBSchema.USUARIO_APELLIDOS,
-                DBSchema.USUARIO_CORREO, DBSchema.USUARIO_PASS, DBSchema.USUARIO_ROL);
-
-
-        preparedStatement = connection.prepareStatement(query);
-
-        preparedStatement.setString(1, usuario.getNombre());
-        preparedStatement.setString(2, usuario.getApellidos());
-        preparedStatement.setString(3, usuario.getCorreo());
-        preparedStatement.setString(4, usuario.getPassword());
-        preparedStatement.setString(5, usuario.getRol());
-
-        preparedStatement.executeUpdate();
-    }
-
     public List<Usuario> getAllUsuarios() throws SQLException {
         List<Usuario> listaUsuarios = new ArrayList<>();
         connection = DBConnection.getConnection();
@@ -85,5 +65,81 @@ public class UsuarioDAO {
 
         }
         return listaUsuarios;
+    }
+
+    public void updateUsuarioSocio(Usuario usuario) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String queryUsuario = String.format(
+                "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                DBSchema.TAB_USUARIO,
+                DBSchema.USUARIO_NOMBRE,
+                DBSchema.USUARIO_APELLIDOS,
+                DBSchema.USUARIO_CORREO,
+                DBSchema.USUARIO_PASS,
+                DBSchema.USUARIO_ROL,
+                DBSchema.USUARIO_ID
+        );
+
+        preparedStatement = connection.prepareStatement(queryUsuario);
+        preparedStatement.setString(1, usuario.getNombre());
+        preparedStatement.setString(2, usuario.getApellidos());
+        preparedStatement.setString(3, usuario.getCorreo());
+        preparedStatement.setString(4, usuario.getPassword());
+        preparedStatement.setString(5, usuario.getRol());
+        preparedStatement.setInt(6, usuario.getIdUsuario());
+        preparedStatement.executeUpdate();
+
+        String queryBuscarSocio = String.format(
+                "SELECT * FROM %s WHERE %s = ?",
+                DBSchema.TAB_SOCIO,
+                DBSchema.SOCIO_ID_USUARIO
+        );
+
+        preparedStatement = connection.prepareStatement(queryBuscarSocio);
+        preparedStatement.setInt(1, usuario.getIdUsuario());
+        resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            String querySocio = String.format(
+                    "UPDATE %s SET %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                    DBSchema.TAB_SOCIO,
+                    DBSchema.SOCIO_NOMBRE,
+                    DBSchema.SOCIO_APELLIDOS,
+                    DBSchema.SOCIO_EMAIL,
+                    DBSchema.SOCIO_ID_USUARIO
+            );
+
+            preparedStatement = connection.prepareStatement(querySocio);
+            preparedStatement.setString(1, usuario.getNombre());
+            preparedStatement.setString(2, usuario.getApellidos());
+            preparedStatement.setString(3, usuario.getCorreo());
+            preparedStatement.setInt(4, usuario.getIdUsuario());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public void deleteUsuarioSocio(Usuario usuario) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String querySocio = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                DBSchema.TAB_SOCIO,
+                DBSchema.SOCIO_ID_USUARIO
+        );
+
+        preparedStatement = connection.prepareStatement(querySocio);
+        preparedStatement.setInt(1, usuario.getIdUsuario());
+        preparedStatement.executeUpdate();
+
+        String queryUsuario = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                DBSchema.TAB_USUARIO,
+                DBSchema.USUARIO_ID
+        );
+
+        preparedStatement = connection.prepareStatement(queryUsuario);
+        preparedStatement.setInt(1, usuario.getIdUsuario());
+        preparedStatement.executeUpdate();
     }
 }

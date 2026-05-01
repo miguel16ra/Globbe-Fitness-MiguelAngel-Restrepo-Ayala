@@ -58,4 +58,50 @@ public class ClaseDAO {
         }
         return listaClases;
     }
+
+    public void updateClase(Clase clase) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String query = String.format(
+                "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                DBSchema.TAB_CLASE,
+                DBSchema.CLASE_NOMBRE,
+                DBSchema.CLASE_DESCRIPCION,
+                DBSchema.CLASE_FECHA,
+                DBSchema.CLASE_HORA,
+                DBSchema.CLASE_SALA,
+                DBSchema.CLASE_AFORO,
+                DBSchema.CLASE_MONITOR,
+                DBSchema.CLASE_ESTADO,
+                DBSchema.CLASE_ID
+        );
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, clase.getNombre());
+        preparedStatement.setString(2, clase.getDescripcion());
+        preparedStatement.setString(3, clase.getFecha());
+        preparedStatement.setString(4, clase.getHora());
+        preparedStatement.setString(5, clase.getSala());
+        preparedStatement.setInt(6, clase.getAforoMaximo());
+        preparedStatement.setString(7, clase.getMonitor());
+        preparedStatement.setString(8, clase.getEstado());
+        preparedStatement.setInt(9, clase.getIdClase());
+
+        preparedStatement.executeUpdate();
+    }
+
+    public void deleteClase(int idClase) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String query = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                DBSchema.TAB_CLASE,
+                DBSchema.CLASE_ID
+        );
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, idClase);
+
+        preparedStatement.executeUpdate();
+    }
 }

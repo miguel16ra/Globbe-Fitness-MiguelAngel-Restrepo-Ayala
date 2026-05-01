@@ -60,9 +60,96 @@ public class SocioDAO {
 
     }
 
-    public void updateSocio(Socio socio) throws SQLException{}
+    public void updateSocioUsuario(Socio socio) throws SQLException {
+        connection = DBConnection.getConnection();
 
-    public void deleteSocio(int id) throws SQLException{}
+        if (socio.getPassword() != null && !socio.getPassword().isEmpty()) {
+            String queryUsuario = String.format(
+                    "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                    DBSchema.TAB_USUARIO,
+                    DBSchema.USUARIO_NOMBRE,
+                    DBSchema.USUARIO_APELLIDOS,
+                    DBSchema.USUARIO_CORREO,
+                    DBSchema.USUARIO_PASS,
+                    DBSchema.USUARIO_ID
+            );
+
+            preparedStatement = connection.prepareStatement(queryUsuario);
+            preparedStatement.setString(1, socio.getNombre());
+            preparedStatement.setString(2, socio.getApellidos());
+            preparedStatement.setString(3, socio.getEmail());
+            preparedStatement.setString(4, socio.getPassword());
+            preparedStatement.setInt(5, socio.getIdUsuario());
+            preparedStatement.executeUpdate();
+
+        } else {
+            String queryUsuario = String.format(
+                    "UPDATE %s SET %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                    DBSchema.TAB_USUARIO,
+                    DBSchema.USUARIO_NOMBRE,
+                    DBSchema.USUARIO_APELLIDOS,
+                    DBSchema.USUARIO_CORREO,
+                    DBSchema.USUARIO_ID
+            );
+
+            preparedStatement = connection.prepareStatement(queryUsuario);
+            preparedStatement.setString(1, socio.getNombre());
+            preparedStatement.setString(2, socio.getApellidos());
+            preparedStatement.setString(3, socio.getEmail());
+            preparedStatement.setInt(4, socio.getIdUsuario());
+            preparedStatement.executeUpdate();
+        }
+
+        String querySocio = String.format(
+                "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                DBSchema.TAB_SOCIO,
+                DBSchema.SOCIO_NOMBRE,
+                DBSchema.SOCIO_APELLIDOS,
+                DBSchema.SOCIO_DNI,
+                DBSchema.SOCIO_EMAIL,
+                DBSchema.SOCIO_TELEFONO,
+                DBSchema.SOCIO_FECHA_ALTA,
+                DBSchema.SOCIO_ESTADO,
+                DBSchema.SOCIO_ID_PLAN,
+                DBSchema.SOCIO_ID
+        );
+
+        preparedStatement = connection.prepareStatement(querySocio);
+        preparedStatement.setString(1, socio.getNombre());
+        preparedStatement.setString(2, socio.getApellidos());
+        preparedStatement.setString(3, socio.getDni());
+        preparedStatement.setString(4, socio.getEmail());
+        preparedStatement.setString(5, socio.getTelefono());
+        preparedStatement.setString(6, socio.getFechaAlta());
+        preparedStatement.setString(7, socio.getEstado());
+        preparedStatement.setInt(8, socio.getIdPlan());
+        preparedStatement.setInt(9, socio.getIdSocio());
+        preparedStatement.executeUpdate();
+    }
+
+    public void deleteSocioUsuario(Socio socio) throws SQLException {
+        connection = DBConnection.getConnection();
+
+        String querySocio = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                DBSchema.TAB_SOCIO,
+                DBSchema.SOCIO_ID
+        );
+
+        String queryUsuario = String.format(
+                "DELETE FROM %s WHERE %s = ?",
+                DBSchema.TAB_USUARIO,
+                DBSchema.USUARIO_ID
+        );
+
+        preparedStatement = connection.prepareStatement(querySocio);
+        preparedStatement.setInt(1, socio.getIdSocio());
+        preparedStatement.executeUpdate();
+
+        preparedStatement = connection.prepareStatement(queryUsuario);
+        preparedStatement.setInt(1, socio.getIdUsuario());
+        preparedStatement.executeUpdate();
+    }
 
     public List<Socio> getAllSocios() throws SQLException {
         List<Socio> listaSocios = new ArrayList<>();
@@ -85,8 +172,13 @@ public class SocioDAO {
             String fechaAlta = resultSet.getString(DBSchema.SOCIO_FECHA_ALTA);
             String estado = resultSet.getString(DBSchema.SOCIO_ESTADO);
             int idPlan = resultSet.getInt(DBSchema.SOCIO_ID_PLAN);
+            int idUsuario = resultSet.getInt(DBSchema.SOCIO_ID_USUARIO);
 
-            listaSocios.add(new Socio(id, nombre, apellidos, dni, email, telefono, fechaAlta, estado, idPlan));
+            Socio socio = new Socio(id, nombre, apellidos, dni, email, telefono, fechaAlta, estado, idPlan);
+            socio.setIdUsuario(idUsuario);
+
+            listaSocios.add(socio);
+
         }
 
         return listaSocios;
