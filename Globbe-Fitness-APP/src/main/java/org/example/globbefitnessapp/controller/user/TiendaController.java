@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.globbefitnessapp.HelloApplication;
 import org.example.globbefitnessapp.dao.ProductoDAO;
+import org.example.globbefitnessapp.dao.SocioDAO;
 import org.example.globbefitnessapp.dao.VentaDAO;
 import org.example.globbefitnessapp.model.*;
 
@@ -89,6 +90,7 @@ public class TiendaController implements Initializable {
     private ObservableList<Venta> listaCompras;
     private ProductoDAO productoDAO;
     private VentaDAO ventaDAO;
+    private SocioDAO socioDAO;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -250,7 +252,33 @@ public class TiendaController implements Initializable {
                 return;
             }
 
-            int idSocio = UsuarioLogueado.getUsuario().getIdUsuario();
+            int idUsuario = UsuarioLogueado.getUsuario().getIdUsuario();
+            Socio socioLogueado;
+
+            try {
+                socioLogueado = socioDAO.getSocioById(idUsuario);
+
+                if (socioLogueado == null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Socio");
+                    alert.setHeaderText(null);
+                    alert.setContentText("El usuario logueado no tiene un socio asociado");
+                    alert.showAndWait();
+                    return;
+                }
+
+            } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("No se pudo obtener el socio asociado");
+                alert.showAndWait();
+
+                System.out.println(e.getMessage());
+                return;
+            }
+
+            int idSocio = socioLogueado.getIdSocio();
             String metodoPago = cbMetodoPago.getValue();
             String fechaVenta = java.time.LocalDate.now().toString();
 
@@ -301,6 +329,7 @@ public class TiendaController implements Initializable {
         listaCompras = FXCollections.observableArrayList();
         productoDAO = new ProductoDAO();
         ventaDAO = new VentaDAO();
+        socioDAO = new SocioDAO();
 
     }
 
@@ -321,7 +350,11 @@ public class TiendaController implements Initializable {
             listaProductos.addAll(productoDAO.getAllProductos());
 
             if (UsuarioLogueado.getUsuario() != null) {
-                listaCompras.addAll(ventaDAO.getVentasByID(UsuarioLogueado.getUsuario().getIdUsuario()));
+                Socio socioLogueado = socioDAO.getSocioById(UsuarioLogueado.getUsuario().getIdUsuario());
+
+                if (socioLogueado != null) {
+                    listaCompras.addAll(ventaDAO.getVentasByID(socioLogueado.getIdSocio()));
+                }
             }
 
             tablaProductos.setItems(listaProductos);
