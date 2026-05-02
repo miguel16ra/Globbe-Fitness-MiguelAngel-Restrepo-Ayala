@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="globbeFitness">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="reservas">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="reserva" maxOccurs="unbounded" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="fechaReserva" type="xs:date"/>
+                                        <xs:element name="estado">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="confirmada"/>
+                                                    <xs:enumeration value="cancelada"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="asistencia" type="xs:boolean"/>
+                                        <xs:element name="socio">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="nombre" type="xs:string"/>
+                                                    <xs:element name="apellidos" type="xs:string"/>
+                                                    <xs:element name="dni">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:pattern value="[0-9]{8}[A-Z]"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="email" type="xs:string"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="idSocio" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="1"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="clase">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="nombre" type="xs:string"/>
+                                                    <xs:element name="fecha" type="xs:date"/>
+                                                    <xs:element name="hora" type="xs:string"/>
+                                                    <xs:element name="sala" type="xs:string"/>
+                                                    <xs:element name="monitor" type="xs:string"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="idClase" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="1"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" use="required">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="1"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

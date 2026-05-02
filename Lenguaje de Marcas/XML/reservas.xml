@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<globbeFitness xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="reservas.xsd">
+    <reservas>
+        <reserva id="1">
+            <fechaReserva>2026-04-15</fechaReserva>
+            <estado>confirmada</estado>
+            <asistencia>true</asistencia>
+            <socio idSocio="1">
+                <nombre>Miguel Angel</nombre>
+                <apellidos>Restrepo Ayala</apellidos>
+                <dni>12345678A</dni>
+                <email>miguel@gmail.com</email>
+            </socio>
+            <clase idClase="1">
+                <nombre>Spinning</nombre>
+                <fecha>2026-04-20</fecha>
+                <hora>18:00:00</hora>
+                <sala>Sala 1</sala>
+                <monitor>Alba Ruiz</monitor>
+            </clase>
+        </reserva>
+        <reserva id="2">
+            <fechaReserva>2026-04-15</fechaReserva>
+            <estado>confirmada</estado>
+            <asistencia>false</asistencia>
+            <socio idSocio="2">
+                <nombre>Olga</nombre>
+                <apellidos>Moreno Martin</apellidos>
+                <dni>23456789B</dni>
+                <email>olga@gmail.com</email>
+            </socio>
+            <clase idClase="2">
+                <nombre>Yoga</nombre>
+                <fecha>2026-04-21</fecha>
+                <hora>10:00:00</hora>
+                <sala>Sala 2</sala>
+                <monitor>Lucia Maria</monitor>
+            </clase>
+        </reserva>
+    </reservas>
+</globbeFitness>
