@@ -30,8 +30,8 @@ Debemos dirigirnos a la estructura del proyecto ( en el apartado File), y config
 
 ### Usuarios
 - En la app exiten dos tipos de usuarios:
--`/Admin`: pueden insertar, actualizar o eliminar usuarios, productos, clases o reservas
--`/User`: pueden mirar su informacion, reservas clases y comprar productos
+- `/Admin`: pueden insertar, actualizar o eliminar usuarios, productos, clases o reservas
+- `/User`: pueden mirar su informacion, reservas clases y comprar productos
 
 ### Estructura de carpetas sugerida
 - Dentro de src/main/java/org.example.globbefitnessapp/, se recomienda tener las carpetas: controller, dao, database y model. Y dentro de controller, admin y user
