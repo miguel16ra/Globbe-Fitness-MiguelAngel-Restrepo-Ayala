@@ -29,14 +29,62 @@ Desarrollar una aplicación funcional en JavaFX conectada a base de datos median
 - Ejecutar el Main
 
 ## Estructura del repositorio
-- README.md
-- Bases de Datos
-- Entornos de Desarrollo
-- Lenguajes de marcas
-- Programación
-- Sistemas Informáticos
-- MPO
-- IPE
+
+├───Bases de Datos
+│   ├───Diagrama y Modelo Relacional
+│   └───Scripts SQL
+├───Entornos de Desarrollo
+├───Globbe-Fitness-APP
+│   ├───.idea
+│   ├───.mvn
+│   │   └───wrapper
+│   ├───src
+│   │   └───main
+│   │       ├───java
+│   │       │   └───org
+│   │       │       └───example
+│   │       │           └───globbefitnessapp
+│   │       │               ├───controller
+│   │       │               │   ├───admin
+│   │       │               │   └───user
+│   │       │               ├───dao
+│   │       │               ├───database
+│   │       │               └───model
+│   │       └───resources
+│   │           └───org
+│   │               └───example
+│   │                   └───globbefitnessapp
+│   │                       ├───admin
+│   │                       ├───css
+│   │                       ├───img
+│   │                       └───user
+│   └───target
+│       ├───classes
+│       │   └───org
+│       │       └───example
+│       │           └───globbefitnessapp
+│       │               ├───admin
+│       │               ├───controller
+│       │               │   ├───admin
+│       │               │   └───user
+│       │               ├───css
+│       │               ├───dao
+│       │               ├───database
+│       │               ├───img
+│       │               ├───model
+│       │               └───user
+│       └───generated-sources
+│           └───annotations
+├───IPE
+│   └───Portfolio
+│       └───images
+├───Lenguaje de Marcas
+│   ├───Prueba
+│   └───XML
+├───MPO
+├───Programacion
+└───Sistemas Informaticos
+    └───Funcionamiento
 
 
 
