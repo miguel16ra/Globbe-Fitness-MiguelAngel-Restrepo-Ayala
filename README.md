@@ -29,6 +29,8 @@ Desarrollar una aplicación funcional en JavaFX conectada a base de datos median
 - Ejecutar el Launcher en IntelliJ
 
 ## Estructura del repositorio
+
+```
 Globbe-Fitness-MiguelAngel-Restrepo-Ayala/
 ├── README.md
 ├── Bases de Datos/
@@ -85,3 +87,4 @@ Globbe-Fitness-MiguelAngel-Restrepo-Ayala/
 │   └── README.md
 └── Sistemas Informaticos/
     └── README.md
+```
