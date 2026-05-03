@@ -1,32 +1,26 @@
-# Globbe Fitness - Miguel Ángel Restrepo Ayala
+# Programación - Globbe Fitness Center
 
-Proyecto intermodular de 1ºDAM basado en el desarrollo de una app de escritorio para la gestión de un gimnasio
+## Qué hace la aplicación
+Globbe Fitness Center es una aplicación de gestión para gimnasio. Permite organizar la información de socios, clases, reservas y productos en una interfaz sencilla.
 
-## Descripcion
-La aplicación está orientada a la gestión de socios, clases y reservas, una tienda con control de stock y planes mensuales y ofertas del gimnasio.
+## Cómo se ejecuta
+La aplicación se ejecuta desde el proyecto Java con Maven. Para iniciarla, se debe abrir el proyecto en el IDE y ejecutar el Launcher.
 
-## Objetivo
-Desarrollar una aplicación funcional en JavaFX conectada a base de datos mediante JDBC, integrando los contenidos vistos en todas las asignaturas de 1ºDAM.
+## Qué funcionalidades tiene
+La aplicación incluye funcionalidades para:
+- Consultar datos.
+- Añadir registros.
+- Modificar información.
+- Eliminar datos.
+- Gestionar reservas y clases.
+- Mostrar listados de la información almacenada.
 
-## Tecnologías usadas
-- Java
-- JavaFX
-- JDBC
-- MariaDB (XAMPP)
-- XML y XSD
-- HTML y CSS
+## Qué parte usa la base de datos
+La base de datos se usa en toda la parte de gestión de datos. La aplicación se conecta mediante JDBC para trabajar con:
+- socios,
+- clases,
+- reservas,
+- productos,
+- y consultas relacionadas entre esas tablas.
 
-## Herramientas de desarrollo
-- IntelliJ
-- Visual Studio Code
-- Git y GitHub
-
-## Instrucciones de instalación/ejecución
-- Clonar el repositorio
-- Abrir el proyecto en IntelliJ
-- Crear la base de datos ejecutando los scripts SQL
-- Conectar con JDBC
-- Ejecutar el Main
-
-## Estructura del repositorio
-Actualizar cuando acabemos
+La base de datos es necesaria para guardar, leer y actualizar la información de la aplicación.
