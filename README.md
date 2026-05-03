@@ -31,13 +31,21 @@ Desarrollar una aplicación funcional en JavaFX conectada a base de datos median
 ## Estructura del repositorio
 
 ├───Bases de Datos
+
 │   ├───Diagrama y Modelo Relacional
+
 │   └───Scripts SQL
+
 ├───Entornos de Desarrollo
+
 ├───Globbe-Fitness-APP
+
 │   ├───.idea
+
 │   ├───.mvn
+
 │   │   └───wrapper
+
 │   ├───src
 │   │   └───main
 │   │       ├───java
